@@ -1,0 +1,32 @@
+@font-face {
+    font-family: RPG;
+    src: url("../fonts/DottedSongtiSquareRegular.otf");
+}
+
+@font-face {
+    font-family: RPG_D;
+    src: url("../fonts/DottedSongtiDiamondRegular.otf");
+}
+
+@font-face {
+    font-family: RPG_C;
+    src: url("../fonts/DottedSongtiCircleRegular.otf");
+}
+.rpg_font {
+    font: 25px RPG_C;
+    font-weight: bolder;
+}
+.rpg_6h {
+    height: 48px;
+    margin: 8px;
+}
+.rpg_4h {
+    height: 32px;
+    margin: 8px;
+}
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
