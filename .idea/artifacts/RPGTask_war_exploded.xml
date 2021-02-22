@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="RPGTask:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/RPGTask_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="RPGTask" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Spring-5.2.3.RELEASE" />
+          <element id="library" level="project" name="Spring MVC-5.2.3.RELEASE" />
+          <element id="library" level="project" name="ant-launcher-1.9.6" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="RPGTask/web/Web" />
+    </root>
+  </artifact>
+</component>

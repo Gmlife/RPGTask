@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.BlogDao">
+
+    <select id="getBlog" resultType="blog">
+        select *
+        from blog
+        where blog_id = #{blogId}
+    </select>
+
+    <insert id="addBlog" parameterType="Blog">
+        insert into blog(blog_title, blog_text, blog_commit, verify_state)
+        values (#{blogTitle}, #{blogText}, #{blogCommit}, #{verifyState})
+    </insert>
+
+    <update id="updateBlog" parameterType="blog">
+        update blog
+        <set>
+            <if test="blogTitle!=null">
+                blog_title=#{blogTitle},
+            </if>
+            <if test="blogText!=null">
+                blog_text=#{blogText},
+            </if>
+            <if test="blogCommit!=null">
+                blog_commit=#{blogCommit},
+            </if>
+            <if test="verifyState!=null">
+                verify_state=#{verifyState},
+            </if>
+        </set>
+        where blog_id = #{blogId}
+    </update>
+
+    <delete id="deleteBlog">
+        delete
+        from blog
+        where blog_id = #{blogId}
+    </delete>
+
+</mapper>
