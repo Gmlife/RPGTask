@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.CommitDao">
+
+    <select id="getCommit" resultType="commit">
+        select *
+        from commit
+        where commit_id = #{commitId}
+    </select>
+
+    <insert id="addCommit" parameterType="Commit">
+        insert into commit(commit_user_id, commit_text, commit_date)
+        values (#{commitUserId}, #{commitText}, #{commitDate})
+    </insert>
+
+    <update id="updateCommit" parameterType="commit">
+        update commit
+        <set>
+            <if test="commitUserId!=null">
+                commit_user_id=#{commitUserId},
+            </if>
+            <if test="commitText!=null">
+                commit_text=#{commitText},
+            </if>
+            <if test="commitDate!=null">
+                commit_date=#{commitDate},
+            </if>
+        </set>
+        where commit_id = #{commitId}
+    </update>
+
+    <delete id="deleteCommit">
+        delete
+        from commit
+        where commit_id = #{commitId}
+    </delete>
+
+</mapper>

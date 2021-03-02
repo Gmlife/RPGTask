@@ -50,11 +50,9 @@ public class UserController {
 
     @RequestMapping(value = "/register.action", method = RequestMethod.GET)
     public String toRegister(Model model) {
-        List<Integer> l = new ArrayList<>();
-        for (int i = 1; i <= 50; i++) {
-            l.add(i);
-        }
-        model.addAttribute("icon_list", l);
+        addIconList(model);
+        model.addAttribute("icon_num",0);
+        model.addAttribute("sex",false);
         return "register";
     }
 
@@ -62,6 +60,9 @@ public class UserController {
     public String register(String username, String password, String nickname, boolean sex, int iconId, Model model) {
         User user = userService.getUser(username);
         if (user != null) {
+            addIconList(model);
+            model.addAttribute("icon_num",iconId);
+            model.addAttribute("sex",sex);
             model.addAttribute("msg", "该用户名已经被注册！");
             return "register";
         }
@@ -73,6 +74,13 @@ public class UserController {
         model.addAttribute("msg", "注册成功！");
         model.addAttribute("username", username);
         return "login";
+    }
+    public void addIconList(Model model){
+        List<Integer> l = new ArrayList<>();
+        for (int i = 1; i <= 50; i++) {
+            l.add(i);
+        }
+        model.addAttribute("icon_list", l);
     }
 }
 

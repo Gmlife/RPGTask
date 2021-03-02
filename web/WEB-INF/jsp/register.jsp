@@ -14,8 +14,8 @@
     <script src=${pageContext.request.contextPath}/js/jquery-1.11.3.min.js>
     </script>
     <script>
-        let icon_num = 0;
-        let sex = false;
+        let icon_num = ${icon_num};
+        let sex = ${sex};
         $().ready(function () {
             var $male = $("#male_icon>img");  // 申明一个数组变量，存放这些图片
             var $female = $("#female_icon>img");  // 申明一个数组变量，存放这些图片
@@ -75,19 +75,6 @@
                 $("#sex").val("false");
             });
         });
-
-        // 判断是登录账号和密码是否为空
-        function check() {
-            const username = $("#username").val();
-            const password = $("#password").val();
-            if (username === "" || password === "") {
-                $("#message").text("账号或密码不能为空！");
-                return false;
-            }
-            return true;
-        }
-
-
     </script>
 </head>
 <body>
@@ -120,6 +107,14 @@
             <input class="rpg_4h rpg_font" type="text" id="nickname" name="nickname" placeholder="请输入昵称"
                    required>
         </li>
+        <li>
+            <button class="rpg_4h rpg_font reg_button" type="button"
+                    onclick=location.href="${pageContext.request.contextPath}/login.action">返回</button>
+            <button class="rpg_4h rpg_font reg_button" type="submit">注册</button>
+        </li>
+        <li>
+            <span class="rpg_4h rpg_font" style="color: red;">${msg}</span>
+        </li>
     </ul>
     <input id="sex" name="sex" type="hidden" value="false">
     <input id="iconId" name="iconId" type="hidden" value="0">
@@ -127,7 +122,7 @@
     <button class="next_button" id="next" type="button"></button>
     <button class="male_button" id="male" type="button"></button>
     <button class="female_button" id="female" type="button"></button>
-    <button class="rpg_4h rpg_font reg_button" type="submit">注册</button>
+
 </form>
 </body>
 </html>

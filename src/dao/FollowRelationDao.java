@@ -4,8 +4,8 @@ import org.springframework.stereotype.Repository;
 import pojo.FollowRelation;
 @Repository
 public interface FollowRelationDao {
-    FollowRelation getFollowRelation(@Param("commitId") int commitId);
+    FollowRelation getFollowFromRelation(@Param("followFromId") int followFromId);
+    int getFollowToRelation(@Param("followToId") int followToId);
     int addFollowRelation(FollowRelation commit);
-    int updateFollowRelation(FollowRelation commit);
-    int deleteFollowRelation(@Param("commitId") int commitId);
+    int deleteFollowRelation(FollowRelation commit);
 }
