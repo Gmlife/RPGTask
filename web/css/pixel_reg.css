@@ -13,8 +13,8 @@ button {
     position: absolute;
     width: 192px;
     height: 192px;
-    top: 60px;
-    left: 168px;
+    top: 84px;
+    left: 432px;
 }
 
 .reg_box .female_icon {
@@ -22,15 +22,15 @@ button {
     position: absolute;
     width: 192px;
     height: 192px;
-    top: 60px;
-    left: 168px;
+    top: 84px;
+    left: 432px;
 }
 
 .reg_content {
     width: 640px;
     position: absolute;
-    left: 156px;
-    top: 268px;
+    left: 216px;
+    top: 304px;
 }
 
 .reg_box {
@@ -58,7 +58,7 @@ button {
     width: 640px;
     height: 80px;
     padding: 4px 0;
-    text-align: right;
+    text-align: center;
     text-align-last: auto;
     display: block;
     vertical-align: middle;
@@ -109,8 +109,8 @@ button {
     position: absolute;
     width: 88px;
     height: 68px;
-    left: 64px;
-    top: 122px;
+    left: 320px;
+    top: 140px;
 }
 
 .reg_box .next_button {
@@ -119,8 +119,8 @@ button {
     position: absolute;
     width: 88px;
     height: 68px;
-    left: 376px;
-    top: 122px;
+    left: 648px;
+    top: 140px;
 }
 
 .reg_box .male_button {
@@ -129,8 +129,8 @@ button {
     position: absolute;
     width: 52px;
     height: 52px;
-    left: 56px;
-    top: 68px;
+    left: 356px;
+    top: 220px;
 }
 
 .reg_box .female_button {
@@ -139,8 +139,8 @@ button {
     position: absolute;
     width: 52px;
     height: 52px;
-    left: 108px;
-    top: 68px;
+    left: 648px;
+    top: 220px;
 }
 
 .reg_box .reg_button {
@@ -155,4 +155,13 @@ button {
     display: inline-block;
     cursor: pointer;
     vertical-align: top;
+}
+.reg_box span {
+    background: url('../images/hint.png');
+    background-size: 100%;
+    width: 400px;
+    text-align-last: justify;
+    padding: 18px 100px 10px;
+    display: inline-block;
+    vertical-align: middle;
 }

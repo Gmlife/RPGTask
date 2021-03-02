@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.MessageDao">
+
+    <select id="getMessage" resultType="message">
+        select *
+        from message
+        where message_id = #{messageId}
+    </select>
+
+    <insert id="addMessage" parameterType="Message">
+        insert into message(message_user_id, message_text,message_target_id)
+        values (#{messageUserId}, #{messageText}, #{messageTargetId})
+    </insert>
+
+    <update id="updateMessage" parameterType="message">
+        update message
+        <set>
+            <if test="messageUserId!=null">
+                message_user_id=#{messageUserId},
+            </if>
+            <if test="messageText!=null">
+                message_text=#{message_text},
+            </if>
+            <if test="messageTargetId!=null">
+                message_target_id=#{messageTargetId},
+            </if>
+        </set>
+        where message_id = #{messageId}
+    </update>
+
+    <delete id="deleteMessage">
+        delete
+        from message
+        where message_id = #{messageId}
+    </delete>
+
+</mapper>
