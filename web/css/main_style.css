@@ -1,0 +1,71 @@
+body {
+    background-image: url('../images/main_back.jpg');
+    background-repeat: repeat;
+    background-position: top;
+}
+
+.head_content {
+    margin: 0 auto;
+    max-width: 1500px;
+}
+
+.head_content ul {
+    position: relative !important;
+    display: block;
+    width: 100%;
+}
+
+.head_content li {
+    background-image: url('../images/menu_bt.png');
+    background-repeat: no-repeat;
+    display: table-cell;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+}
+
+.head_content li a {
+    vertical-align: bottom;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+.head_content li img {
+    margin: 8px 20px 0;
+}
+
+.main_content {
+    background-image: url("../images/wood.png");
+    background-repeat: repeat;
+    height: 100%;
+    margin: 0 auto;
+    min-height: 1000px;
+    width: 1600px;
+    border: 16px ridge darkgoldenrod;
+    box-shadow: 0 5px 30px rgb(50 50 50);
+}
+
+.main_content .task_list {
+    display: table-cell;
+    width: 1200px;
+    min-height: 1000px;
+}
+
+.main_content .user_profile {
+    background-image: url("../images/paper.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    right: 8px;
+    top: 8px;
+    display: table-cell;
+    width: 400px;
+    height: 556px;
+}
+
+.clear-fix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
