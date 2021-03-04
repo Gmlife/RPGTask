@@ -1,0 +1,49 @@
+body {
+    background-image: url('../images/main_back.jpg');
+    background-repeat: repeat;
+    background-position: top;
+}
+
+.head_content {
+    margin: 0 auto;
+    max-width: 1500px;
+}
+
+.menu {
+}
+.menu ul{
+    position: relative!important;
+    display: block;
+    width: 100%;
+    text-align: -webkit-right;
+}
+.menu li{
+    background-image: url('../images/menu_bt.png');
+    background-repeat: no-repeat;
+    display: table-cell;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+}
+.menu li a{
+    vertical-align: bottom;
+}
+.menu li img{
+    margin: 8px 20px 0;
+}
+.main_content {
+    background-image: url("../images/wood.png");
+    background-repeat: repeat;
+    height: 100%;
+    margin: 0 auto;
+    min-height: 1000px;
+    max-width: 1600px;
+    border:16px ridge darkgoldenrod;
+    box-shadow: 0 5px 30px rgb(50 50 50);
+}
+.clear-fix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
