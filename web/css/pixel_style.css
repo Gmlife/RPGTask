@@ -24,6 +24,9 @@
     height: 32px;
     margin: 8px;
 }
+.rpg_3h {
+    height: 26px;
+}
 .center {
     position: absolute;
     top: 50%;

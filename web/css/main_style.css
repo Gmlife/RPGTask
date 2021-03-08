@@ -60,7 +60,10 @@ body {
     top: 8px;
     display: table-cell;
     width: 400px;
-    height: 556px;
+    height: 700px;
+    border: 16px ridge darkgoldenrod;
+    border-top:none;
+    border-right: none;
 }
 
 .clear-fix:after {
@@ -68,4 +71,58 @@ body {
     display: block;
     height: 0;
     visibility: hidden;
+}
+.user_profile .head_frame{
+    display: block;
+    margin: auto;
+    border: 16px ridge darkgoldenrod;
+    border-top: none;
+}
+.user_profile li{
+    display: block;
+}
+.user_profile .mid{
+    margin: auto;
+    text-align: center;
+}
+.user_profile .sex{
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    margin: 8px 0 0;
+    vertical-align: middle;
+}
+.exp_bar{
+    background-image: url("../images/exp_bar.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 206px;
+    height: 30px;
+    margin: auto;
+}
+.exp_content{
+    padding: 10px 10px 10px 46px;
+    width: 150px;
+    height: 10px;
+}
+.exp_content .exp{
+    height: 100%;
+    vertical-align: super;
+}
+.exp_content .exp:hover{
+    content: attr(title);
+}
+.user_profile label{
+    background: url("../images/label.png");
+    background-size: 100%;
+    width: 100px;
+    padding: 18px 50px 10px;
+    text-align-last: justify;
+    display: inline-block;
+    vertical-align: middle;
+}
+.user_profile p{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 8px 0 0;
 }

@@ -34,7 +34,7 @@
       method="post" onsubmit="return check()">
     <ul class="center">
         <h1 class="rpg_6h">欢迎访问校园互助系统</h1>
-        <li class="line ">
+        <li>
             <label class="rpg_4h" for="username">用户名</label>
             <input class="rpg_4h rpg_font" type="text" id="username" name="username" placeholder="请输入用户名" required
                    autofocus>
