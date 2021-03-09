@@ -54,5 +54,5 @@
         <%--        <c:forEach var="" items=""></c:forEach>--%>
 
     </div>
-
 <%@include file="/WEB-INF/footer.jsp" %>
+
