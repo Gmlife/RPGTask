@@ -17,15 +17,19 @@
     font-weight: bolder;
 }
 .rpg_6h {
-    height: 48px;
-    margin: 8px;
+    font-size: 64px;
+}
+.rpg_5h{
+    font-size: 48px;
 }
 .rpg_4h {
-    height: 32px;
-    margin: 8px;
+    font-size: 32px;
 }
 .rpg_3h {
-    height: 26px;
+    font-size: 26px;
+}
+.rpg_1h {
+    font-size: 10px;
 }
 .center {
     position: absolute;
