@@ -6,11 +6,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pojo.Task;
 
+import java.util.List;
+
 @Service("taskService")
 @Transactional
 public class TaskServiceImpl implements TaskService {
     @Autowired
     private TaskDao taskDao;
+
+
+    @Override
+    public List<Task> getAllTask() {
+        return taskDao.getAllTask();
+    }
 
     @Override
     public Task getTask(int taskId) {

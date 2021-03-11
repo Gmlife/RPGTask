@@ -1,0 +1,115 @@
+.menu ul {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.menu li {
+    background-image: url('../images/menu/menu_bt.png');
+    background-repeat: no-repeat;
+    display: list-item;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+}
+
+.menu li a {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    vertical-align: bottom;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    width: 32px;
+}
+
+.menu li img {
+    position: absolute;
+    right: 8px;
+    top: 20px;
+}
+
+.user_profile .head_frame {
+    background-image: url("../images/common_ui/icon_bg.png");
+    background-repeat: no-repeat;
+    display: block;
+    margin: auto;
+    border: 16px ridge darkgoldenrod;
+    border-top: none;
+    width: 192px;
+    height: 192px;
+    position: relative;
+}
+
+.head_frame .title {
+    display: block;
+    position: absolute;
+    width: 100%;
+}
+
+.head_frame .frame {
+    display: block;
+    position: absolute;
+}
+
+.user_profile li {
+    display: block;
+}
+
+.user_profile .mid {
+    margin: auto;
+    text-align: center;
+}
+.exp_bar {
+    background-image: url("../images/common_ui/exp_bar.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 206px;
+    height: 30px;
+    margin: auto;
+}
+
+.exp_content {
+    padding: 10px 10px 10px 46px;
+    width: 150px;
+    height: 10px;
+    vertical-align: super;
+    position: relative;
+}
+
+.exp_content .exp {
+    position: absolute;
+    z-index: 1;
+    height: 10px;
+    max-width: 150px;
+}
+
+.exp_content .exp_num {
+    position: absolute;
+    z-index: 2;
+    width: inherit;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.exp_content .exp:hover {
+    content: attr(title);
+}
+
+.user_profile label {
+    text-align-last: justify;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.user_profile .signature {
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    text-align: justify;
+    padding: 10px 8px 24px 8px;
+}

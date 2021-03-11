@@ -2,8 +2,7 @@ package dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import pojo.User;
-import pojo.UserDesc;
+import pojo.*;
 
 @Repository
 public interface UserDao {
@@ -23,9 +22,7 @@ public interface UserDao {
     int deleteUser(@Param("userName") String userName);
 
     // UserDesc
-    UserDesc getUserDesc(String userName);
-
-    UserDesc getUserDescByUid(int uid);
+    UserDesc getUserDesc(int uid);
 
     int addUserDesc(UserDesc desc);
 
@@ -34,4 +31,22 @@ public interface UserDao {
     int addCoin(@Param("uid") int uid, @Param("coin") int coin);
 
     int addExp(@Param("uid") int uid, @Param("exp") int exp);
+
+    UserBlog getUserBlog(@Param("uid") int uid);
+
+    int addUserBlog(UserBlog desc);
+
+    int updateUserBlog(UserBlog desc);
+
+    UserMessage getUserMessage(@Param("uid") int uid);
+
+    int addUserMessage(UserMessage desc);
+
+    int updateUserMessage(UserMessage desc);
+
+    UserTask getUserTask(@Param("uid") int uid);
+
+    int addUserTask(UserTask desc);
+
+    int updateUserTask(UserTask desc);
 }

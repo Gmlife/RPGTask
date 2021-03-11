@@ -5,8 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pojo.User;
-import pojo.UserDesc;
+import pojo.*;
 import service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -51,8 +50,8 @@ public class UserController {
     @RequestMapping(value = "/register.action", method = RequestMethod.GET)
     public String toRegister(Model model) {
         addIconList(model);
-        model.addAttribute("icon_num",0);
-        model.addAttribute("sex",false);
+        model.addAttribute("icon_num", 0);
+        model.addAttribute("sex", false);
         return "register";
     }
 
@@ -61,21 +60,30 @@ public class UserController {
         User user = userService.getUser(username);
         if (user != null) {
             addIconList(model);
-            model.addAttribute("icon_num",iconId);
-            model.addAttribute("sex",sex);
+            model.addAttribute("icon_num", iconId);
+            model.addAttribute("sex", sex);
             model.addAttribute("msg", "该用户名已经被注册！");
             return "register";
         }
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         User new_user = new User(0, false, username, password);
-        UserDesc new_desc = new UserDesc(0, nickname, sex, iconId, "", "", 0, 0, df.format(new Date()));
         userService.addUser(new_user);
-        userService.addUserDesc(new_desc);
+        int uid = userService.getUser(username).getUid();
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        UserDesc desc = new UserDesc(uid, nickname, sex, iconId + 1, "", "", 0, 0, df.format(new Date()));
+        UserBlog blog = new UserBlog(uid, "[]");
+        UserMessage message = new UserMessage(uid, "[]");
+        UserTask task = new UserTask(uid, null, 0, "[]", "[]", "[]");
+        userService.addUserDesc(desc);
+        userService.addUserBlog(blog);
+        userService.addUserMessage(message);
+        userService.addUserTask(task);
         model.addAttribute("msg", "注册成功！");
         model.addAttribute("username", username);
         return "login";
     }
-    public void addIconList(Model model){
+
+    public void addIconList(Model model) {
         List<Integer> l = new ArrayList<>();
         for (int i = 1; i <= 50; i++) {
             l.add(i);

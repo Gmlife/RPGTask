@@ -6,13 +6,13 @@
 <head>
     <title>注册界面 - 校园互助系统</title>
     <link rel="icon" type="image/png" sizes="16x16"
-          href="${pageContext.request.contextPath }/images/origin/RPGTask.png">
+          href="${pageContext.request.contextPath }/images/RPGTask.png">
     <meta http-equiv=Content-Type content="text/html; charset=utf-8">
     <link href="${pageContext.request.contextPath}/css/reset.css" type=text/css rel=stylesheet>
     <link href="${pageContext.request.contextPath}/css/pixel_style.css" type=text/css rel=stylesheet>
     <link href="${pageContext.request.contextPath}/css/pixel_reg.css" type=text/css rel=stylesheet>
-    <script src=${pageContext.request.contextPath}/js/jquery-1.11.3.min.js>
-    </script>
+    <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
     <script>
         let icon_num = ${icon_num};
         let sex = ${sex};
@@ -93,27 +93,28 @@
     </div>
     <ul class="reg_content">
         <li>
-            <label class="rpg_4h" for="username">用户名</label>
-            <input class="rpg_4h rpg_font" type="text" id="username" name="username" placeholder="请输入用户名" required
+            <label class="rpg_3h" for="username">用户名</label>
+            <input class="rpg_3h rpg_font" type="text" id="username" name="username" placeholder="请输入用户名" required
                    autofocus>
         </li>
         <li>
-            <label class="rpg_4h" for="password">密码</label>
-            <input class="rpg_4h rpg_font" type="password" id="password" name="password" placeholder="请输入密码"
+            <label class="rpg_3h" for="password">密码</label>
+            <input class="rpg_3h rpg_font" type="password" id="password" name="password" placeholder="请输入密码"
                    required>
         </li>
         <li>
-            <label class="rpg_4h" for="password">昵称</label>
-            <input class="rpg_4h rpg_font" type="text" id="nickname" name="nickname" placeholder="请输入昵称"
+            <label class="rpg_3h" for="nickname">昵称</label>
+            <input class="rpg_3h rpg_font" type="text" id="nickname" name="nickname" placeholder="请输入昵称"
                    required>
         </li>
         <li>
             <button class="rpg_4h rpg_font reg_button" type="button"
-                    onclick=location.href="${pageContext.request.contextPath}/login.action">返回</button>
+                    onclick=location.href="${pageContext.request.contextPath}/login.action">返回
+            </button>
             <button class="rpg_4h rpg_font reg_button" type="submit">注册</button>
         </li>
         <li>
-            <span class="rpg_4h rpg_font" style="color: red;">${msg}</span>
+            <span class="rpg_3h rpg_font" style="color: red;">${msg}</span>
         </li>
     </ul>
     <input id="sex" name="sex" type="hidden" value="false">
@@ -122,7 +123,6 @@
     <button class="next_button" id="next" type="button"></button>
     <button class="male_button" id="male" type="button"></button>
     <button class="female_button" id="female" type="button"></button>
-
 </form>
 </body>
 </html>

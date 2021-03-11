@@ -5,16 +5,16 @@
 <head>
     <title>登录页面 - 校园互助系统</title>
     <link rel="icon" type="image/png" sizes="16x16"
-          href="${pageContext.request.contextPath }/images/origin/RPGTask.png">
+          href="${pageContext.request.contextPath }/images/RPGTask.png">
     <meta http-equiv=Content-Type content="text/html; charset=utf-8">
     <link href="${pageContext.request.contextPath}/css/reset.css" type=text/css rel=stylesheet>
     <link href="${pageContext.request.contextPath}/css/pixel_style.css" type=text/css rel=stylesheet>
     <link href="${pageContext.request.contextPath}/css/pixel_login.css" type=text/css rel=stylesheet>
-    <script src=${pageContext.request.contextPath}/js/jquery-1.11.3.min.js>
-    </script>
+    <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
     <script>
         $().ready(function () {
-            $("#username").text(${username});
+            $("#username").text("${username}");
         });
 
         // 判断是登录账号和密码是否为空
@@ -35,13 +35,13 @@
     <ul class="center">
         <h1 class="rpg_6h">欢迎访问校园互助系统</h1>
         <li>
-            <label class="rpg_4h" for="username">用户名</label>
-            <input class="rpg_4h rpg_font" type="text" id="username" name="username" placeholder="请输入用户名" required
+            <label class="rpg_3h" for="username">用户名</label>
+            <input class="rpg_3h rpg_font" type="text" id="username" name="username" placeholder="请输入用户名" required
                    autofocus>
         </li>
         <li>
-            <label class="rpg_4h" for="password">密码</label>
-            <input class="rpg_4h rpg_font" type="password" id="password" name="password" placeholder="请输入密码"
+            <label class="rpg_3h" for="password">密码</label>
+            <input class="rpg_3h rpg_font" type="password" id="password" name="password" placeholder="请输入密码"
                    required>
         </li>
         <li>
@@ -51,11 +51,11 @@
             </button>
         </li>
         <li>
-            <span class="rpg_4h rpg_font" style="color: red;">${msg}</span>
+            <span class="rpg_3h rpg_font red">${msg}</span>
         </li>
     </ul>
     <img style=" transform: translate(-180%, 30%);"
-         src="${pageContext.request.contextPath }/images/pen.png">
+         src="${pageContext.request.contextPath }/images/common_ui/pen.png">
 </form>
 </body>
 </html>
