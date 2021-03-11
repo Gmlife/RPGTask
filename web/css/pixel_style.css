@@ -13,27 +13,85 @@
     src: url("../fonts/DottedSongtiCircleRegular.otf");
 }
 .rpg_font {
-    font: 25px RPG_C;
+    font: 10px RPG_C;
     font-weight: bolder;
 }
+.rpg_7h {
+    font-size: 54px;
+    line-height: 56px;
+}
 .rpg_6h {
-    font-size: 64px;
+    font-size: 46px;
+    line-height: 48px;
 }
 .rpg_5h{
-    font-size: 48px;
+    font-size: 38px;
+    line-height: 40px;
 }
 .rpg_4h {
-    font-size: 32px;
+    font-size: 30px;
+    line-height: 32px;
 }
 .rpg_3h {
-    font-size: 26px;
+    font-size: 22px;
+    line-height: 24px;
+}
+.rpg_2h {
+    font-size: 14px;
+    line-height: 16px;
 }
 .rpg_1h {
-    font-size: 10px;
+    font-size: 6px;
+    line-height: 8px;
 }
+.icon_7h {
+    width: 56px;
+    height: 56px;
+    vertical-align: middle;
+}
+.icon_6h {
+    width: 48px;
+    height: 48px;
+    vertical-align: middle;
+}
+.icon_5h {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+}
+.icon_4h {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+}
+.icon_3h {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+.icon_2h {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+.icon_1h {
+    width: 8px;
+    height: 8px;
+    vertical-align: middle;
+}
+
 .center {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.inline{
+    display: inline-block;
+}
+.gold{
+    color: goldenrod;
+}
+.red{
+    color: red;
 }

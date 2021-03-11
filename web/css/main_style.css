@@ -1,5 +1,5 @@
 body {
-    background-image: url('../images/main_back.jpg');
+    background-image: url('../images/back/main_back.jpg');
     background-repeat: repeat;
     background-position: top;
 }
@@ -27,43 +27,8 @@ aside .menu {
     right: 0;
     top: 6px;
 }
-
-.menu ul {
-    position: relative;
-    display: block;
-    width: 100%;
-}
-
-.menu li {
-    background-image: url('../images/menu_bt.png');
-    background-repeat: no-repeat;
-    display: list-item;
-    position: relative;
-    width: 80px;
-    height: 80px;
-    text-align: center;
-}
-
-.menu li a {
-    position: absolute;
-    left: 8px;
-    top: 8px;
-    vertical-align: bottom;
-    text-decoration: none;
-    cursor: pointer;
-    color: black;
-    width: 32px;
-}
-
-.menu li img {
-    position: absolute;
-    right: 8px;
-    top: 20px;
-}
-
-
 aside .user_profile {
-    background-image: url("../images/paper.png");
+    background-image: url("../images/back/user_profile_back.png");
     background-repeat: no-repeat;
     background-position: center;
     display: table-cell;
@@ -74,107 +39,17 @@ aside .user_profile {
     border: 16px ridge darkgoldenrod;
     position: absolute;
 }
-
-.clear-fix:after {
-    content: ".";
-    display: block;
-    height: 0;
-    visibility: hidden;
-}
-
-.user_profile .head_frame {
-    display: block;
-    margin: auto;
-    border: 16px ridge darkgoldenrod;
-    border-top: none;
-    width: 192px;
-    height: 192px;
-    position: relative;
-}
-
-.head_frame .title {
-    display: block;
-    position: absolute;
-    width: 100%;
-}
-
-.head_frame .frame {
-    display: block;
-    position: absolute;
-}
-
-.user_profile li {
-    display: block;
-}
-
-.user_profile .mid {
-    margin: auto;
-    text-align: center;
-}
-
-.user_profile .sex {
-    display: inline-block;
-    width: 26px;
-    height: 26px;
-    vertical-align: middle;
-}
-
-.exp_bar {
-    background-image: url("../images/exp_bar.png");
+aside .day_signed{
+    background-image: url("../images/back/user_profile_back.png");
     background-repeat: no-repeat;
-    background-size: contain;
-    width: 206px;
-    height: 30px;
-    margin: auto;
-}
-
-.exp_content {
-    padding: 10px 10px 10px 46px;
-    width: 150px;
-    height: 10px;
-    vertical-align: super;
-    position: relative;
-}
-
-.exp_content .exp {
+    background-position: center;
+    display: table-cell;
+    right: 80px;
+    top: 492px;
+    width: 320px;
+    height: 180px;
+    border: 16px ridge darkgoldenrod;
     position: absolute;
-    z-index: 1;
-    height: 10px;
-    max-width: 150px;
-    width: 100%;
-}
-
-.exp_content .exp_num {
-    position: absolute;
-    height: 100%;
-    z-index: 2;
-    width: inherit;
-    text-align: center;
-    vertical-align: top;
-}
-
-.exp_content .exp:hover {
-    content: attr(title);
-}
-
-.user_profile label {
-    text-align-last: justify;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.user_profile p {
-    display: inline-block;
-}
-
-.user_profile .signature {
-    word-break: break-all;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-    overflow: hidden;
-    margin: 16px;
 }
 
 .main_content mian {
@@ -187,7 +62,7 @@ aside .user_profile {
 }
 
 mian .task_list {
-    background-image: url("../images/wood.png");
+    background-image: url("../images/back/wood.png");
     background-repeat: repeat;
     height: 100%;
     min-height: 1000px;
@@ -196,25 +71,3 @@ mian .task_list {
     position: relative;
 }
 
-.task_list .task_title {
-    background-image: url("../images/tb.png");
-    background-repeat: no-repeat;
-    display: block;
-    width: 600px;
-    height: 50px;
-    text-align-last: justify;
-    padding: 0 300px;
-    border: 16px none darkgoldenrod;
-    border-bottom-style: ridge;
-}
-
-.task_list ul {
-    display: table;
-}
-
-.task_list li {
-    background-image: url("../images/task_bg.png");
-    height: 500px;
-    width: 300px;
-    display: inline-block;
-}

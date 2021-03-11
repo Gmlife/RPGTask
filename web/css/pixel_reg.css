@@ -1,6 +1,6 @@
 
 body {
-    background-image: url('../images/stone.png');
+    background-image: url('../images/back/stone.png');
     background-repeat: repeat;
     background-position: top;
 }
@@ -18,7 +18,7 @@ button {
 }
 
 .reg_box .female_icon {
-    background-image: url('../images/icon_bg.png');
+    background-image: url('../images/common_ui/icon_bg.png');
     position: absolute;
     width: 192px;
     height: 192px;
@@ -34,7 +34,7 @@ button {
 }
 
 .reg_box {
-    background: url("../images/reg_back.png") no-repeat center;
+    background: url("../images/back/reg_back.png") no-repeat center;
     background-size: contain;
     position: absolute;
     width: 1056px;
@@ -65,20 +65,22 @@ button {
 }
 
 .reg_box label {
-    background: url("../images/label.png");
+    background: url("../images/common_ui/label.png");
     background-size: 100%;
     width: 100px;
-    padding: 18px 50px 10px;
+    height: 24px;
+    padding: 21px 50px 15px;
     text-align-last: justify;
     display: inline-block;
     vertical-align: middle;
 }
 
 .reg_box input {
-    background: url("../images/input.png");
+    background: url("../images/common_ui/input.png");
     background-size: 100%;
     width: 360px;
-    padding: 16px 20px 12px;
+    height: 24px;
+    padding: 21px 20px 15px;
     border: none;
     text-align: left;
     display: inline-block;
@@ -93,18 +95,8 @@ button {
     vertical-align: top;
 }
 
-.reg_box span {
-    background: url('../images/hint.png');
-    width: 400px;
-    background-size: 100% auto;
-    text-align-last: justify;
-    padding: 18px 100px 10px;
-    display: inline-block;
-    vertical-align: middle;
-}
-
 .reg_box .pre_button {
-    background: url("../images/pre_button.png");
+    background: url("../images/common_ui/pre_button.png");
     background-size: 100%;
     position: absolute;
     width: 88px;
@@ -114,7 +106,7 @@ button {
 }
 
 .reg_box .next_button {
-    background: url("../images/next_button.png");
+    background: url("../images/common_ui/next_button.png");
     background-size: 100%;
     position: absolute;
     width: 88px;
@@ -124,7 +116,7 @@ button {
 }
 
 .reg_box .male_button {
-    background: url("../images/male.png");
+    background: url("../images/common_ui/male.png");
     background-size: 100%;
     position: absolute;
     width: 52px;
@@ -134,7 +126,7 @@ button {
 }
 
 .reg_box .female_button {
-    background: url("../images/female.png");
+    background: url("../images/common_ui/female.png");
     background-size: 100%;
     position: absolute;
     width: 52px;
@@ -144,7 +136,7 @@ button {
 }
 
 .reg_box .reg_button {
-    background: url('../images/button.png');
+    background: url('../images/common_ui/button.png');
     background-size: 100%;
     width: 300px;
     height: 60px;
@@ -157,11 +149,12 @@ button {
     vertical-align: top;
 }
 .reg_box span {
-    background: url('../images/hint.png');
+    background: url('../images/common_ui/hint.png');
     background-size: 100%;
     width: 400px;
+    height: 24px;
     text-align-last: justify;
-    padding: 18px 100px 10px;
+    padding: 21px 100px 15px;
     display: inline-block;
     vertical-align: middle;
 }

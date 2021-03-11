@@ -1,5 +1,5 @@
 body {
-    background-image: url('../images/stone.png');
+    background-image: url('../images/back/stone.png');
     background-repeat: repeat;
     background-position: top;
 }
@@ -9,7 +9,7 @@ button {
 }
 
 .login_box {
-    background: url("../images/login_box.png") no-repeat center;
+    background: url("../images/back/login_back.png") no-repeat center;
     background-size: contain;
     position: absolute;
     width: 1200px;
@@ -40,20 +40,22 @@ button {
 }
 
 .login_box label {
-    background: url("../images/label.png");
+    background: url("../images/common_ui/label.png");
     background-size: 100%;
     width: 100px;
-    padding: 18px 50px 10px;
+    height: 24px;
+    padding: 21px 50px 15px;
     text-align-last: justify;
     display: inline-block;
     vertical-align: middle;
 }
 
 .login_box input {
-    background: url("../images/input.png");
+    background: url("../images/common_ui/input.png");
     background-size: 100%;
     width: 360px;
-    padding: 16px 20px 12px;
+    height: 24px;
+    padding: 21px 20px 15px;
     border: none;
     text-align: left;
     display: inline-block;
@@ -61,13 +63,12 @@ button {
 }
 
 .login_box button {
-    background: url('../images/button.png');
+    background: url('../images/common_ui/button.png');
     background-size: 100%;
     width: 300px;
     height: 60px;
     padding: 18px 50px 10px;
     text-align-last: center;
-    font-size: 30px;
     border: none;
     display: inline-block;
     cursor: pointer;
@@ -75,11 +76,12 @@ button {
 }
 
 .login_box span {
-    background: url('../images/hint.png');
+    background: url('../images/common_ui/hint.png');
     background-size: 100%;
     width: 400px;
+    height: 24px;
     text-align-last: justify;
-    padding: 18px 100px 10px;
+    padding: 21px 100px 15px;
     display: inline-block;
     vertical-align: middle;
 }

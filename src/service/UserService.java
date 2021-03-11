@@ -1,7 +1,6 @@
 package service;
 
-import pojo.User;
-import pojo.UserDesc;
+import pojo.*;
 
 public interface UserService {
     User tryLogin(String username, String password);
@@ -20,9 +19,7 @@ public interface UserService {
     int deleteUserByUid(int uid);
 
     // UserDesc
-    UserDesc getUserDesc(String username);
-
-    UserDesc getUserDescByUid(int uid);
+    UserDesc getUserDesc(int uid);
 
     int addUserDesc(UserDesc desc);
 
@@ -31,4 +28,25 @@ public interface UserService {
     int addCoin(int uid, int coin);
 
     int addExp(int uid, int exp);
+
+    // UserBlog
+    public UserBlog getUserBlog(int uid);
+
+    public int addUserBlog(UserBlog desc);
+
+    public int updateUserBlog(UserBlog desc);
+
+    // UserMessage
+    public UserMessage getUserMessage(int uid);
+
+    public int addUserMessage(UserMessage desc);
+
+    public int updateUserMessage(UserMessage desc);
+
+    // UserTask
+    public UserTask getUserTask(int uid);
+
+    public int addUserTask(UserTask desc);
+
+    public int updateUserTask(UserTask desc);
 }

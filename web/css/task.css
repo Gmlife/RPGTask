@@ -1,0 +1,106 @@
+.task_list .task_title {
+    background-image: url("../images/back/task_title_back.png");
+    background-repeat: no-repeat;
+    display: block;
+    width: 600px;
+    height: 42px;
+    text-align-last: justify;
+    padding: 8px 300px 0 300px;
+    border: 16px none darkgoldenrod;
+    border-bottom-style: ridge;
+}
+
+.task_list ul {
+    display: table;
+    position: relative;
+}
+
+.task_list li {
+    position: relative;
+    display: inline-block;
+    margin: 20px 50px;
+}
+
+.task_list .task_head {
+    background-image: url("../images/back/t_title_back.png");
+    background-repeat: no-repeat;
+    position: relative;
+    width: 200px;
+    padding: 30px 50px 6px 50px;
+    height: 64px;
+    text-align: center;
+}
+
+.task_head .task_icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.task_head h1 {
+    color: brown;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.task_list .task_content {
+    background-image: url("../images/back/t_content_back.png");
+    background-repeat: repeat-y;
+    position: relative;
+    width: 260px;
+    padding: 0 15px 0 25px;
+    word-wrap: break-word;
+    text-align: justify;
+}
+
+.task_list .task_foot {
+    background-image: url("../images/back/t_foot_back.png");
+    background-repeat: no-repeat;
+    position: relative;
+    width: 230px;
+    padding: 10px 45px 40px 25px;
+    height: 50px;
+}
+.task_foot .award{
+    float: left;
+    width: auto;
+    height: 30px;
+    margin-top: 11px;
+
+}
+.task_foot .submit {
+    background: url("../images/common_ui/label.png");
+    background-size: contain;
+    float: right;
+    color: coral;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    padding: 6px 28px 0;
+    margin-top: 11px;
+    border: 0;
+}
+.task_foot .progress {
+    background: url("../images/common_ui/label.png");
+    background-size: contain;
+    float: right;
+    color: greenyellow;
+    cursor: default;
+    width: 66px;
+    height: 24px;
+    padding: 6px 17px 0;
+    margin-top: 11px;
+}
+.task_foot .finish {
+    background: url("../images/common_ui/label.png");
+    background-size: contain;
+    float: right;
+    cursor: default;
+    width: 66px;
+    height: 24px;
+    padding: 6px 17px 0;
+    margin-top: 11px;
+}

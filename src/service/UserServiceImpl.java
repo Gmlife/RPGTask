@@ -4,8 +4,7 @@ import dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pojo.User;
-import pojo.UserDesc;
+import pojo.*;
 
 @Service("userService")
 @Transactional
@@ -49,13 +48,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDesc getUserDesc(String username) {
-        return userDao.getUserDesc(username);
-    }
-
-    @Override
-    public UserDesc getUserDescByUid(int uid) {
-        return userDao.getUserDescByUid(uid);
+    public UserDesc getUserDesc(int uid) {
+        return userDao.getUserDesc(uid);
     }
 
     @Override
@@ -76,5 +70,50 @@ public class UserServiceImpl implements UserService {
     @Override
     public int addExp(int uid, int exp) {
         return userDao.addExp(uid, exp);
+    }
+
+    @Override
+    public UserBlog getUserBlog(int uid) {
+        return userDao.getUserBlog(uid);
+    }
+
+    @Override
+    public int addUserBlog(UserBlog desc) {
+        return userDao.addUserBlog(desc);
+    }
+
+    @Override
+    public int updateUserBlog(UserBlog desc) {
+        return userDao.updateUserBlog(desc);
+    }
+
+    @Override
+    public UserMessage getUserMessage(int uid) {
+        return userDao.getUserMessage(uid);
+    }
+
+    @Override
+    public int addUserMessage(UserMessage desc) {
+        return userDao.addUserMessage(desc);
+    }
+
+    @Override
+    public int updateUserMessage(UserMessage desc) {
+        return userDao.updateUserMessage(desc);
+    }
+
+    @Override
+    public UserTask getUserTask(int uid) {
+        return userDao.getUserTask(uid);
+    }
+
+    @Override
+    public int addUserTask(UserTask desc) {
+        return userDao.addUserTask(desc);
+    }
+
+    @Override
+    public int updateUserTask(UserTask desc) {
+        return userDao.updateUserTask(desc);
     }
 }

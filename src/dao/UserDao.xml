@@ -52,12 +52,6 @@
     <select id="getUserDesc" resultType="userDesc">
         select *
         from user_desc
-        where user_name = #{userName}
-    </select>
-
-    <select id="getUserDescByUid" resultType="userDesc">
-        select *
-        from user_desc
         where user_id = #{uid}
     </select>
 
@@ -97,5 +91,82 @@
         update user_desc
         set exp = #{exp}
         where user_id = #{uid}
+    </update>
+
+    <select id="getUserBlog" resultType="userBlog">
+        select *
+        from user_blog
+        where user_id = #{uid}
+    </select>
+
+    <insert id="addUserBlog" parameterType="UserBlog">
+        insert into user_blog(user_id, blog_id)
+        values (#{uid}, #{blogId})
+    </insert>
+
+    <update id="updateUserBlog" parameterType="userBlog">
+        update user_blog
+        <set>
+            <if test="blogId!=null">
+                blog_id=#{blogId},
+            </if>
+        </set>
+        where user_id=#{uid}
+    </update>
+
+
+    <select id="getUserMessage" resultType="userMessage">
+        select *
+        from user_message
+        where user_id = #{uid}
+    </select>
+
+    <insert id="addUserMessage" parameterType="UserMessage">
+        insert into user_message(user_id, message_id)
+        values (#{uid}, #{messageId})
+    </insert>
+
+    <update id="updateUserMessage" parameterType="userMessage">
+        update user_message
+        <set>
+            <if test="messageId!=null">
+                message_id=#{messageId},
+            </if>
+        </set>
+        where user_id=#{uid}
+    </update>
+
+    <select id="getUserTask" resultType="userTask">
+        select *
+        from user_task
+        where user_id = #{uid}
+    </select>
+
+    <insert id="addUserTask" parameterType="UserTask">
+        insert into user_task(user_id, last_signed_time, signed_day, finish_sys_task_id, publish_task_id,
+                              finish_task_id)
+        values (#{uid}, #{lastSignedTime}, #{signedDay}, #{finishSysTaskId}, #{publishTaskId}, #{finishTaskId})
+    </insert>
+
+    <update id="updateUserTask" parameterType="userMessage">
+        update user_task
+        <set>
+            <if test="lastSignedTime!=null">
+                last_signed_time=#{lastSignedTime},
+            </if>
+            <if test="signedDay!=null">
+                signed_day=#{signedDay},
+            </if>
+            <if test="finishSysTaskId!=null">
+                finish_sys_task_id=#{finishSysTaskId},
+            </if>
+            <if test="publishTaskId!=null">
+                publish_task_id=#{publishTaskId},
+            </if>
+            <if test="finishTaskId!=null">
+                finish_task_id=#{finishTaskId},
+            </if>
+        </set>
+        where user_id=#{uid}
     </update>
 </mapper>

@@ -6,12 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pojo.Task;
 import pojo.User;
 import pojo.UserDesc;
 import service.TaskService;
 import service.UserService;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class TaskController {
@@ -24,8 +26,11 @@ public class TaskController {
     public String toTask(Model model, HttpSession session) {
         User user = (User) session.getAttribute("USER_SESSION");
         UserDesc desc;
-        desc = userService.getUserDescByUid(user.getUid());
+        desc = userService.getUserDesc(user.getUid());
+        List<Task> tasks;
+        tasks=  taskService.getAllTask();
         model.addAttribute("desc", desc);
+        model.addAttribute("task_list",tasks);
         return "task";
     }
 
