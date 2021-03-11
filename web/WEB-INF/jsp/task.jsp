@@ -1,7 +1,6 @@
 <%@include file="/WEB-INF/header.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-
 <div class="task_list">
     <p class="task_title rpg_font rpg_5h">任务列表</p>
     <ul>
@@ -35,5 +34,3 @@
         </c:forEach>
     </ul>
 </div>
-
-<%@include file="/WEB-INF/footer.jsp" %>
