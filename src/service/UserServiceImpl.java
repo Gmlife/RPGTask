@@ -1,119 +1,58 @@
 package service;
 
-import dao.UserDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import pojo.*;
 
-@Service("userService")
-@Transactional
-public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserDao userDao;
+public interface UserServiceImpl {
+    User tryLogin(String userName, String userPass);
 
-    @Override
-    public User tryLogin(String username, String password) {
-        return userDao.tryLogin(username, password);
-    }
+    // User
+    User getUser(String userName);
 
-    @Override
-    public User getUser(String username) {
-        return userDao.getUser(username);
-    }
+    User getUserByUid(int uid);
 
-    @Override
-    public User getUserByUid(int uid) {
-        return userDao.getUserByUid(uid);
-    }
+    int addUser(User user);
 
-    @Override
-    public int addUser(User user) {
-        return userDao.addUser(user);
-    }
+    int updateUser(User user);
 
-    @Override
-    public int updateUser(User user) {
-        return userDao.updateUser(user);
-    }
+    int deleteUserByUid(int uid);
 
-    @Override
-    public int deleteUserByUid(int uid) {
-        return userDao.deleteUserByUid(uid);
-    }
+    int deleteUser(String userName);
 
-    @Override
-    public int deleteUser(String username) {
-        return userDao.deleteUser(username);
-    }
+    // UserDesc
+    UserDesc getUserDesc(int uid);
 
-    @Override
-    public UserDesc getUserDesc(int uid) {
-        return userDao.getUserDesc(uid);
-    }
+    int addUserDesc(UserDesc desc);
 
-    @Override
-    public int addUserDesc(UserDesc desc) {
-        return userDao.addUserDesc(desc);
-    }
+    int updateUserDesc(UserDesc desc);
 
-    @Override
-    public int updateUserDesc(UserDesc desc) {
-        return userDao.updateUserDesc(desc);
-    }
+    int addCoin(int uid, int coin);
 
-    @Override
-    public int addCoin(int uid, int coin) {
-        return userDao.addCoin(uid, coin);
-    }
+    int addExp(int uid, int exp);
 
-    @Override
-    public int addExp(int uid, int exp) {
-        return userDao.addExp(uid, exp);
-    }
+    //UserBlog
+    UserBlog getUserBlog(int uid);
 
-    @Override
-    public UserBlog getUserBlog(int uid) {
-        return userDao.getUserBlog(uid);
-    }
+    int addUserBlog(UserBlog desc);
 
-    @Override
-    public int addUserBlog(UserBlog desc) {
-        return userDao.addUserBlog(desc);
-    }
+    int updateUserBlog(UserBlog desc);
 
-    @Override
-    public int updateUserBlog(UserBlog desc) {
-        return userDao.updateUserBlog(desc);
-    }
+    // UserMessage
+    UserMessage getUserMessage(int uid);
 
-    @Override
-    public UserMessage getUserMessage(int uid) {
-        return userDao.getUserMessage(uid);
-    }
+    int addUserMessage(UserMessage desc);
 
-    @Override
-    public int addUserMessage(UserMessage desc) {
-        return userDao.addUserMessage(desc);
-    }
+    int updateUserMessage(UserMessage desc);
 
-    @Override
-    public int updateUserMessage(UserMessage desc) {
-        return userDao.updateUserMessage(desc);
-    }
+    UserTask getUserTask(int uid);
 
-    @Override
-    public UserTask getUserTask(int uid) {
-        return userDao.getUserTask(uid);
-    }
+    int addUserTask(UserTask desc);
 
-    @Override
-    public int addUserTask(UserTask desc) {
-        return userDao.addUserTask(desc);
-    }
+    int updateUserTask(UserTask desc);
 
-    @Override
-    public int updateUserTask(UserTask desc) {
-        return userDao.updateUserTask(desc);
-    }
+    // UserFollow
+    UserFollow getUserFollow(int uid);
+
+    int addUserFollow(UserFollow desc);
+
+    int updateUserFollow(UserFollow desc);
 }

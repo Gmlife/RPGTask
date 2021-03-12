@@ -8,21 +8,21 @@ public class UserTask {
     private int uid;
     private String lastSignedTime;
     private int signedDay;
-    private String finishSysTaskId;
     private String publishTaskId;
+    private String doingTaskId;
     private String finishTaskId;
-    private List<String> finishSysTaskIdList;
     private List<String> publishTaskIdList;
+    private List<String> doingTaskIdList;
     private List<String> finishTaskIdList;
 
-    public UserTask(int uid, String lastSignedTime, int signedDay, String finishSysTaskId, String publishTaskId, String finishTaskId) {
+    public UserTask(int uid, String lastSignedTime, int signedDay, String publishTaskId, String doingTaskId, String finishTaskId) {
         this.uid = uid;
         this.lastSignedTime = lastSignedTime;
         this.signedDay = signedDay;
-        this.finishSysTaskId = finishSysTaskId;
+        this.doingTaskId = doingTaskId;
         this.publishTaskId = publishTaskId;
         this.finishTaskId = finishTaskId;
-        this.finishSysTaskIdList = CodeListUtil.codeToList(finishSysTaskId);
+        this.doingTaskIdList = CodeListUtil.codeToList(doingTaskId);
         this.publishTaskIdList = CodeListUtil.codeToList(publishTaskId);
         this.finishTaskIdList = CodeListUtil.codeToList(finishTaskId);
     }
@@ -51,12 +51,12 @@ public class UserTask {
         this.signedDay = signedDay;
     }
 
-    public String getFinishSysTaskId() {
-        return finishSysTaskId;
+    public String getDoingTaskId() {
+        return doingTaskId;
     }
 
-    public void setFinishSysTaskId(String finishSysTaskId) {
-        this.finishSysTaskId = finishSysTaskId;
+    public void setDoingTaskId(String doingTaskId) {
+        this.doingTaskId = doingTaskId;
     }
 
     public String getPublishTaskId() {
@@ -75,12 +75,12 @@ public class UserTask {
         this.finishTaskId = finishTaskId;
     }
 
-    public List<String> getFinishSysTaskIdList() {
-        return finishSysTaskIdList;
+    public List<String> getDoingTaskIdList() {
+        return doingTaskIdList;
     }
 
-    public void setFinishSysTaskIdList(List<String> finishSysTaskIdList) {
-        this.finishSysTaskIdList = finishSysTaskIdList;
+    public void setDoingTaskIdList(List<String> doingTaskIdList) {
+        this.doingTaskIdList = doingTaskIdList;
     }
 
     public List<String> getPublishTaskIdList() {

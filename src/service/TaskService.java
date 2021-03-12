@@ -1,17 +1,42 @@
 package service;
 
+import dao.TaskDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pojo.Task;
 
 import java.util.List;
 
-public interface TaskService {
-    List<Task> getAllTask();
+@Service("taskService")
+@Transactional
+public class TaskService implements TaskServiceImpl {
+    @Autowired
+    private TaskDao taskDao;
 
-    Task getTask(int taskId);
 
-    int addTask(Task task);
+    @Override
+    public List<Task> getAllTask() {
+        return taskDao.getAllTask();
+    }
 
-    int updateTask(Task task);
+    @Override
+    public Task getTask(int taskId) {
+        return taskDao.getTask(taskId);
+    }
 
-    int deleteTask(int taskId);
+    @Override
+    public int addTask(Task task) {
+        return taskDao.addTask(task);
+    }
+
+    @Override
+    public int updateTask(Task task) {
+        return taskDao.updateTask(task);
+    }
+
+    @Override
+    public int deleteTask(int taskId) {
+        return taskDao.deleteTask(taskId);
+    }
 }
