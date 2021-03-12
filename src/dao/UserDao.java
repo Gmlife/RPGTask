@@ -34,19 +34,25 @@ public interface UserDao {
 
     UserBlog getUserBlog(@Param("uid") int uid);
 
-    int addUserBlog(UserBlog desc);
+    int addUserBlog(UserBlog blog);
 
-    int updateUserBlog(UserBlog desc);
+    int updateUserBlog(UserBlog blog);
 
     UserMessage getUserMessage(@Param("uid") int uid);
 
-    int addUserMessage(UserMessage desc);
+    int addUserMessage(UserMessage message);
 
-    int updateUserMessage(UserMessage desc);
+    int updateUserMessage(UserMessage message);
 
     UserTask getUserTask(@Param("uid") int uid);
 
-    int addUserTask(UserTask desc);
+    int addUserTask(UserTask task);
 
-    int updateUserTask(UserTask desc);
+    int updateUserTask(UserTask task);
+
+    UserFollow getUserFollow(@Param("uid") int uid);
+
+    int addUserFollow(UserFollow follow);
+
+    int updateUserFollow(UserFollow follow);
 }

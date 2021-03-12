@@ -1,52 +1,136 @@
 package service;
 
+import dao.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pojo.*;
 
-public interface UserService {
-    User tryLogin(String username, String password);
+@Service("userService")
+@Transactional
+public class UserService implements UserServiceImpl {
+    @Autowired
+    private UserDao userDao;
 
-    // User
-    User getUser(String username);
+    @Override
+    public User tryLogin(String username, String password) {
+        return userDao.tryLogin(username, password);
+    }
 
-    User getUserByUid(int uid);
+    @Override
+    public User getUser(String username) {
+        return userDao.getUser(username);
+    }
 
-    int addUser(User user);
+    @Override
+    public User getUserByUid(int uid) {
+        return userDao.getUserByUid(uid);
+    }
 
-    int updateUser(User user);
+    @Override
+    public int addUser(User user) {
+        return userDao.addUser(user);
+    }
 
-    int deleteUser(String username);
+    @Override
+    public int updateUser(User user) {
+        return userDao.updateUser(user);
+    }
 
-    int deleteUserByUid(int uid);
+    @Override
+    public int deleteUserByUid(int uid) {
+        return userDao.deleteUserByUid(uid);
+    }
 
-    // UserDesc
-    UserDesc getUserDesc(int uid);
+    @Override
+    public int deleteUser(String username) {
+        return userDao.deleteUser(username);
+    }
 
-    int addUserDesc(UserDesc desc);
+    @Override
+    public UserDesc getUserDesc(int uid) {
+        return userDao.getUserDesc(uid);
+    }
 
-    int updateUserDesc(UserDesc desc);
+    @Override
+    public int addUserDesc(UserDesc desc) {
+        return userDao.addUserDesc(desc);
+    }
 
-    int addCoin(int uid, int coin);
+    @Override
+    public int updateUserDesc(UserDesc desc) {
+        return userDao.updateUserDesc(desc);
+    }
 
-    int addExp(int uid, int exp);
+    @Override
+    public int addCoin(int uid, int coin) {
+        return userDao.addCoin(uid, coin);
+    }
 
-    // UserBlog
-    public UserBlog getUserBlog(int uid);
+    @Override
+    public int addExp(int uid, int exp) {
+        return userDao.addExp(uid, exp);
+    }
 
-    public int addUserBlog(UserBlog desc);
+    @Override
+    public UserBlog getUserBlog(int uid) {
+        return userDao.getUserBlog(uid);
+    }
 
-    public int updateUserBlog(UserBlog desc);
+    @Override
+    public int addUserBlog(UserBlog blog) {
+        return userDao.addUserBlog(blog);
+    }
 
-    // UserMessage
-    public UserMessage getUserMessage(int uid);
+    @Override
+    public int updateUserBlog(UserBlog blog) {
+        return userDao.updateUserBlog(blog);
+    }
 
-    public int addUserMessage(UserMessage desc);
+    @Override
+    public UserMessage getUserMessage(int uid) {
+        return userDao.getUserMessage(uid);
+    }
 
-    public int updateUserMessage(UserMessage desc);
+    @Override
+    public int addUserMessage(UserMessage message) {
+        return userDao.addUserMessage(message);
+    }
 
-    // UserTask
-    public UserTask getUserTask(int uid);
+    @Override
+    public int updateUserMessage(UserMessage message) {
+        return userDao.updateUserMessage(message);
+    }
 
-    public int addUserTask(UserTask desc);
+    @Override
+    public UserTask getUserTask(int uid) {
+        return userDao.getUserTask(uid);
+    }
 
-    public int updateUserTask(UserTask desc);
+    @Override
+    public int addUserTask(UserTask task) {
+        return userDao.addUserTask(task);
+    }
+
+    @Override
+    public int updateUserTask(UserTask task) {
+        return userDao.updateUserTask(task);
+    }
+
+    @Override
+    public UserFollow getUserFollow(int uid) {
+        return userDao.getUserFollow(uid);
+    }
+
+    @Override
+    public int addUserFollow(UserFollow follow) {
+        return userDao.addUserFollow(follow);
+    }
+
+    @Override
+    public int updateUserFollow(UserFollow follow) {
+        return userDao.updateUserFollow(follow);
+    }
+
+
 }

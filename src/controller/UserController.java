@@ -6,7 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pojo.*;
+import service.BlogService;
+import service.TaskService;
 import service.UserService;
+import util.CodeListUtil;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
@@ -18,6 +21,10 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private BlogService blogService;
+    @Autowired
+    private TaskService taskService;
 
     @RequestMapping(value = "/login.action", method = RequestMethod.POST)
     public String login(String username, String password, Model model, HttpSession session) {
@@ -65,19 +72,14 @@ public class UserController {
             model.addAttribute("msg", "该用户名已经被注册！");
             return "register";
         }
-        User new_user = new User(0, false, username, password);
-        userService.addUser(new_user);
-        int uid = userService.getUser(username).getUid();
-
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        UserDesc desc = new UserDesc(uid, nickname, sex, iconId + 1, "", "", 0, 0, df.format(new Date()));
-        UserBlog blog = new UserBlog(uid, "[]");
-        UserMessage message = new UserMessage(uid, "[]");
-        UserTask task = new UserTask(uid, null, 0, "[]", "[]", "[]");
-        userService.addUserDesc(desc);
-        userService.addUserBlog(blog);
-        userService.addUserMessage(message);
-        userService.addUserTask(task);
+        userService.addUser(new User(0, false, username, password));
+        int uid = userService.getUser(username).getUid();
+        userService.addUserDesc(new UserDesc(uid, nickname, sex, iconId + 1, "", "", 0, 0, df.format(new Date())));
+        userService.addUserBlog(new UserBlog(uid, "[]"));
+        userService.addUserMessage(new UserMessage(uid, "[]"));
+        userService.addUserFollow(new UserFollow(uid, "[]"));
+        userService.addUserTask(new UserTask(uid, null, 0, "[]", "[]", "[]"));
         model.addAttribute("msg", "注册成功！");
         model.addAttribute("username", username);
         return "login";
@@ -90,5 +92,23 @@ public class UserController {
         }
         model.addAttribute("icon_list", l);
     }
-}
 
+    @RequestMapping(value = "/user.action", method = RequestMethod.POST)
+    public String toUser(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("USER_SESSION");
+        int uid = user.getUid();
+        UserDesc desc = userService.getUserDesc(uid);
+        List<Blog> blogs = new ArrayList<>();
+        for (String id : CodeListUtil.codeToList(userService.getUserBlog(uid).getBlogId())) {
+            blogs.add(blogService.getBlog(Integer.parseInt(id)));
+        }
+        List<Task> tasks = new ArrayList<>();
+        for (String id : CodeListUtil.codeToList(userService.getUserTask(uid).getDoingTaskId())) {
+            tasks.add(taskService.getTask(Integer.parseInt(id)));
+        }
+        model.addAttribute("desc", desc);
+        model.addAttribute("blogs", blogs);
+        model.addAttribute("tasks", tasks);
+        return "user";
+    }
+}

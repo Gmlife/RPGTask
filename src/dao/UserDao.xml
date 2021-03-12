@@ -169,4 +169,25 @@
         </set>
         where user_id=#{uid}
     </update>
+
+    <select id="getUserFollow" resultType="userFollow">
+        select *
+        from user_follow
+        where user_id = #{uid}
+    </select>
+
+    <insert id="addUserFollow" parameterType="UserFollow">
+        insert into user_follow(user_id, follow_id)
+        values (#{uid}, #{followId})
+    </insert>
+
+    <update id="updateUserFollow" parameterType="userFollow">
+        update user_follow
+        <set>
+            <if test="followId!=null">
+                follow_id=#{followId},
+            </if>
+        </set>
+        where user_id=#{uid}
+    </update>
 </mapper>

@@ -78,24 +78,6 @@ create table if not exists user
 alter table user
     add primary key (user_id);
 
-create table if not exists follow_relation
-(
-    follow_from_id int not null comment '谁关注的',
-    follow_to_id   int not null comment '关注的谁',
-    constraint user_follow_follow_id_uindex
-        unique (follow_to_id),
-    constraint user_follow_user_id_uindex
-        unique (follow_from_id),
-    constraint `user_ follow_user_user_id_fk`
-        foreign key (follow_from_id) references user (user_id),
-    constraint user_follow_user_user_id_fk
-        foreign key (follow_to_id) references user (user_id)
-)
-    comment '用户详细';
-
-alter table follow_relation
-    add primary key (follow_from_id);
-
 create table if not exists user_blog
 (
     user_id int  not null,
@@ -105,7 +87,7 @@ create table if not exists user_blog
     constraint user_blog_user_user_id_fk
         foreign key (user_id) references user (user_id)
 )
-    comment '关注关系';
+    comment '用户博客';
 
 alter table user_blog
     add primary key (user_id);
@@ -127,10 +109,20 @@ create table if not exists user_desc
         foreign key (user_id) references user (user_id)
             on update cascade on delete cascade
 )
-    comment '用户博客';
+    comment '用户详细';
 
 alter table user_desc
     add primary key (user_id);
+
+create table if not exists user_follow
+(
+    user_id   int  not null
+        primary key,
+    follow_id text not null,
+    constraint table_name_user_user_id_fk
+        foreign key (user_id) references user (user_id)
+)
+    comment '用户关注';
 
 create table if not exists user_message
 (
@@ -144,12 +136,12 @@ create table if not exists user_message
 
 create table if not exists user_task
 (
-    user_id            int      not null,
-    last_signed_time   datetime null comment '上次签到时间',
-    signed_day         int      null comment '连续签到天数',
-    finish_sys_task_id text     null comment '已完成的系统任务',
-    publish_task_id    text     null comment '发布的任务id',
-    finish_task_id     text     null comment '完成的任务的id',
+    user_id          int      not null,
+    last_signed_time datetime null comment '上次签到时间',
+    signed_day       int      null comment '连续签到天数',
+    publish_task_id  text     null comment '发布的任务id',
+    doing_task_id    text     null comment '已完成的系统任务',
+    finish_task_id   text     null comment '完成的任务的id',
     constraint user_task_user_id_uindex
         unique (user_id),
     constraint user_task_user_fk
