@@ -1,0 +1,206 @@
+.user_editor .desc_editor {
+    position: relative;
+    width: 100%;
+    height: 290px;
+    display: block;
+}
+
+.desc_editor .icon_edit {
+    background-image: url("../images/common_ui/icon_bg.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: absolute;
+    border: 16px ridge darkgoldenrod;
+    width: 192px;
+    height: 192px;
+    left: 224px;
+}
+
+.desc_editor .icon_selector {
+    background: url("../images/common_ui/icon_tata.png");
+    border: 16px ridge darkgoldenrod;
+    float: left;
+    width: 192px;
+    height: 192px;
+    position: absolute;
+    display: inline-block;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.desc_editor .user_other {
+    background: url("../images/common_ui/icon_tata.png");
+    border: 16px ridge darkgoldenrod;
+    height: 192px;
+    width: 720px;
+    position: absolute;
+    display: inline-block;
+    left: 448px;
+}
+
+.desc_editor label {
+    background: url("../images/common_ui/label.png");
+    background-size: 100%;
+    width: 100px;
+    height: 24px;
+    padding: 21px 50px 15px;
+    text-align-last: justify;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.desc_editor input {
+    background: url("../images/common_ui/input.png");
+    background-size: 100%;
+    width: 360px;
+    height: 24px;
+    padding: 21px 20px 15px;
+    border: none;
+    text-align: left;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.desc_editor textarea {
+    background-image: url("../images/back/signatrue_back.png");
+    background-position: center;
+    border: 16px ridge darkgoldenrod;
+    width: 495px;
+    height: 112px;
+    border-right: none;
+    border-bottom: none;
+    text-align: left;
+    display: inline-block;
+    resize: none;
+}
+
+.desc_editor .save_button {
+    background: url("../images/common_ui/button2.png");
+    background-size: 100%;
+    width: 200px;
+    height: 62px;
+    text-align-last: center;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: top;
+    position: absolute;
+    top: 126px;
+    color: white;
+}
+
+.user_tb_info {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    display: block;
+}
+.user_tb_info .doing_task {
+    background-image: url("../images/back/user_profile_back.png");
+    background-position: center;
+    background-size: 105%;
+    border: 16px ridge darkgoldenrod;
+    width: 568px;
+    height: 678px;
+    position: absolute;
+}
+.user_tb_info .blog_list {
+    background-image: url("../images/back/user_profile_back.png");
+    background-position: center;
+    background-size: 105%;
+    border: 16px ridge darkgoldenrod;
+    width: 568px;
+    height: 678px;
+    position: absolute;
+    left: 600px;
+}
+
+.doing_task .user_task_title {
+    background-image: url("../images/back/task_title_back.png");
+    background-repeat: no-repeat;
+    display: block;
+    width: 320px;
+    height: 42px;
+    text-align-last: justify;
+    padding: 8px 124px 0;
+    border: 16px none darkgoldenrod;
+    border-bottom-style: ridge;
+}
+
+.blog_list .user_blog_title {
+    background-image: url("../images/back/task_title_back.png");
+    background-repeat: no-repeat;
+    display: block;
+    width: 320px;
+    height: 42px;
+    text-align-last: justify;
+    padding: 8px 124px 0;
+    border: 16px none darkgoldenrod;
+    border-bottom-style: ridge;
+}
+.user_tb_info ul{
+    height: 612px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.user_tb_info li{
+    background-image: url("../images/common_ui/board.png");
+    background-position: center;
+    background-size: 100%;
+    position: relative;
+    display: list-item;
+    width: 568px;
+    height: 100px;
+}
+.doing_task img{
+    position: relative;
+    display: inline-block;
+    height: 64px;
+    width: 64px;
+    margin: 18px;
+}
+.doing_task .coin{
+    float: right;
+    height: 20px;
+    width: 20px;
+    margin: 30px 20px 50px;
+}
+.doing_task .task_title{
+    position: relative;
+    display: inline-block;
+    width: 400px;
+    margin: 14px 0 18px;
+    padding-top: 4px;
+    color: greenyellow;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.doing_task .task_award{
+    position: absolute;
+    height: 24px;
+    width: 52px;
+    padding-right: 8px;
+    text-align: right;
+    right: 0;
+    bottom: 28px;
+    color: goldenrod;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.blog_list .blog_title{
+    position: relative;
+    display: inline-block;
+    width: 548px;
+    margin: 14px 18px 18px;
+    padding-top: 4px;
+    color: greenyellow;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+}
+.blog_list .blog_title:hover{
+    color: brown;
+}

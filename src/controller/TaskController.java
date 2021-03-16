@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pojo.Task;
 import pojo.User;
 import pojo.UserDesc;
-import service.TaskService;
-import service.UserService;
+import service.TaskServiceImpl;
+import service.UserServiceImpl;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -17,9 +17,9 @@ import java.util.List;
 @Controller
 public class TaskController {
     @Autowired
-    private TaskService taskService;
+    private TaskServiceImpl taskService;
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @RequestMapping(value = "/task.action", method = RequestMethod.GET)
     public String toTask(Model model, HttpSession session) {

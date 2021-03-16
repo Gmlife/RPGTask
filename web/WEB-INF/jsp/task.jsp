@@ -3,7 +3,7 @@
          pageEncoding="UTF-8" %>
 
 <div class="task_list">
-    <p class="task_title rpg_font rpg_5h">任务列表</p>
+    <p class="main_title rpg_font rpg_5h">任务列表</p>
     <ul>
         <c:forEach items="${task_list}" var="t">
             <c:if test="${t.verifyState == true}">

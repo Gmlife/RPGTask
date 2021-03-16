@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pojo.*;
-import service.BlogService;
-import service.TaskService;
-import service.UserService;
+import service.BlogServiceImpl;
+import service.TaskServiceImpl;
+import service.UserServiceImpl;
 import util.CodeListUtil;
 
 import javax.servlet.http.HttpSession;
@@ -20,11 +20,11 @@ import java.util.List;
 @Controller
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
     @Autowired
-    private BlogService blogService;
+    private BlogServiceImpl blogService;
     @Autowired
-    private TaskService taskService;
+    private TaskServiceImpl taskService;
 
     @RequestMapping(value = "/login.action", method = RequestMethod.POST)
     public String login(String username, String password, Model model, HttpSession session) {
@@ -93,22 +93,38 @@ public class UserController {
         model.addAttribute("icon_list", l);
     }
 
-    @RequestMapping(value = "/user.action", method = RequestMethod.POST)
+    @RequestMapping(value = "/user.action", method = RequestMethod.GET)
     public String toUser(HttpSession session, Model model) {
         User user = (User) session.getAttribute("USER_SESSION");
         int uid = user.getUid();
         UserDesc desc = userService.getUserDesc(uid);
         List<Blog> blogs = new ArrayList<>();
         for (String id : CodeListUtil.codeToList(userService.getUserBlog(uid).getBlogId())) {
-            blogs.add(blogService.getBlog(Integer.parseInt(id)));
+            if(!id.equals("")){
+                blogs.add(blogService.getBlog(Integer.parseInt(id)));
+            }
         }
         List<Task> tasks = new ArrayList<>();
         for (String id : CodeListUtil.codeToList(userService.getUserTask(uid).getDoingTaskId())) {
-            tasks.add(taskService.getTask(Integer.parseInt(id)));
+            if(!id.equals("")){
+                tasks.add(taskService.getTask(Integer.parseInt(id)));
+            }
+
         }
         model.addAttribute("desc", desc);
         model.addAttribute("blogs", blogs);
         model.addAttribute("tasks", tasks);
+        addIconList(model);
         return "user";
+    }
+
+    @RequestMapping(value ="/save_user.action",method = RequestMethod.POST)
+    public String saveUser(int uid,int iconId,String nickname,String signature){
+        UserDesc desc=userService.getUserDesc(uid);
+        desc.setIcon(iconId);
+        desc.setNickName(nickname);
+        desc.setSignature(signature);
+        userService.updateUserDesc(desc);
+        return "redirect:user.action";
     }
 }

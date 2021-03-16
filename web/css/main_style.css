@@ -52,7 +52,7 @@ aside .day_signed{
     position: absolute;
 }
 
-.main_content mian {
+.main_content main{
     height: 100%;
     min-height: 1000px;
     width: 1232px;
@@ -61,7 +61,7 @@ aside .day_signed{
     float: left;
 }
 
-mian .task_list {
+main .task_list {
     background-image: url("../images/back/wood.png");
     background-repeat: repeat;
     height: 100%;
@@ -70,4 +70,23 @@ mian .task_list {
     border: 16px ridge darkgoldenrod;
     position: relative;
 }
-
+main .user_editor{
+    background-image: url("../images/back/wood.png");
+    background-repeat: repeat;
+    height: 100%;
+    min-height: 1000px;
+    width: 1200px;
+    border: 16px ridge darkgoldenrod;
+    position: relative;
+}
+.main_title {
+    background-image: url("../images/back/task_title_back.png");
+    background-repeat: no-repeat;
+    display: block;
+    width: 600px;
+    height: 42px;
+    text-align-last: justify;
+    padding: 8px 300px 0 300px;
+    border: 16px none darkgoldenrod;
+    border-bottom-style: ridge;
+}

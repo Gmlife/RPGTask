@@ -19,6 +19,7 @@
     <link href="${pageContext.request.contextPath}/css/pixel_style.css" type=text/css rel=stylesheet>
     <link href="${pageContext.request.contextPath}/css/main_style.css" type=text/css rel=stylesheet>
     <link href="${pageContext.request.contextPath}/css/task.css" type=text/css rel=stylesheet>
+    <link href="${pageContext.request.contextPath}/css/user.css" type=text/css rel=stylesheet>
     <link href="${pageContext.request.contextPath}/css/side_bar.css" type=text/css rel=stylesheet>
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
@@ -124,6 +125,6 @@
             </ul>
         </div>
     </aside>
-    <mian>
+    <main>
 
 
