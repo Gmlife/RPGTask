@@ -7,12 +7,10 @@ import java.util.List;
 public class UserFollow {
     private int uid;
     private String followId;
-    private List<String> followIdList;
 
     public UserFollow(int uid, String followId) {
         this.uid = uid;
         this.followId = followId;
-        this.followIdList= CodeListUtil.codeToList(followId);
     }
 
     public int getUid() {
@@ -31,11 +29,7 @@ public class UserFollow {
         this.followId = followId;
     }
 
-    public List<String> getFollowIdList() {
-        return followIdList;
-    }
-
-    public void setFollowIdList(List<String> followIdList) {
-        this.followIdList = followIdList;
+    public List<Integer> getFollowIdList() {
+        return CodeListUtil.codeToList(followId);
     }
 }

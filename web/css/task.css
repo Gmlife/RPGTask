@@ -1,15 +1,3 @@
-.task_list .task_title {
-    background-image: url("../images/back/task_title_back.png");
-    background-repeat: no-repeat;
-    display: block;
-    width: 600px;
-    height: 42px;
-    text-align-last: justify;
-    padding: 8px 300px 0 300px;
-    border: 16px none darkgoldenrod;
-    border-bottom-style: ridge;
-}
-
 .task_list ul {
     display: table;
     position: relative;

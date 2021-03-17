@@ -24,6 +24,9 @@
     color: black;
     width: 32px;
 }
+.menu li a:hover{
+    color: white;
+}
 
 .menu li img {
     position: absolute;
@@ -72,11 +75,11 @@
 }
 
 .exp_content {
-    padding: 10px 10px 10px 46px;
+    margin: 10px 10px 10px 46px;
     width: 150px;
     height: 10px;
     vertical-align: super;
-    position: relative;
+    position: absolute;
 }
 
 .exp_content .exp {
@@ -87,11 +90,11 @@
 }
 
 .exp_content .exp_num {
-    position: absolute;
+    position: relative;
     z-index: 2;
     width: inherit;
     text-align: center;
-    margin-top: 1px;
+    padding-top: 2px;
 }
 
 .exp_content .exp:hover {

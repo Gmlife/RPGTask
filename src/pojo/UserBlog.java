@@ -7,12 +7,10 @@ import java.util.List;
 public class UserBlog {
     private int uid;
     private String blogId;
-    private List<String> blogIdList;
 
     public UserBlog(int uid, String blogId) {
         this.uid = uid;
         this.blogId = blogId;
-        this.blogIdList = CodeListUtil.codeToList(blogId);
     }
 
     public int getUid() {
@@ -31,11 +29,8 @@ public class UserBlog {
         this.blogId = blogId;
     }
 
-    public List<String> getBlogIdList() {
-        return blogIdList;
+    public List<Integer> getBlogIdList() {
+        return CodeListUtil.codeToList(blogId);
     }
 
-    public void setBlogIdList(List<String> blogIdList) {
-        this.blogIdList = blogIdList;
-    }
 }

@@ -6,11 +6,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pojo.Blog;
 
+import java.util.List;
+
 @Service("blogService")
 @Transactional
 public class BlogService implements BlogServiceImpl {
     @Autowired
     BlogDao blogDao;
+
+    @Override
+    public List<Blog> getAllBlog() {
+        return blogDao.getAllBlog();
+    }
 
     @Override
     public Blog getBlog(int blogId) {

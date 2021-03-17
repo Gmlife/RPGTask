@@ -13,7 +13,7 @@
         where task_id = #{taskId}
     </select>
 
-    <insert id="addTask" parameterType="Task">
+    <insert id="addTask" useGeneratedKeys="true" keyProperty="task_id" parameterType="Task">
         insert into task(task_title, task_icon, task_desc, award_coin, task_state, publish_user_id, receive_user_id,
                          verify_state)
         values (#{taskTitle}, #{taskIcon}, #{taskDesc}, #{awardCoin}, #{taskState}, #{publishUserId}, #{receiveUserId},

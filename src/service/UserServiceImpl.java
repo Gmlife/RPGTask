@@ -32,27 +32,27 @@ public interface UserServiceImpl {
     //UserBlog
     UserBlog getUserBlog(int uid);
 
-    int addUserBlog(UserBlog desc);
+    int addUserBlog(UserBlog blog);
 
-    int updateUserBlog(UserBlog desc);
+    int updateUserBlog(UserBlog blog);
 
     // UserMessage
     UserMessage getUserMessage(int uid);
 
-    int addUserMessage(UserMessage desc);
+    int addUserMessage(UserMessage message);
 
-    int updateUserMessage(UserMessage desc);
+    int updateUserMessage(UserMessage message);
 
     UserTask getUserTask(int uid);
 
-    int addUserTask(UserTask desc);
+    int addUserTask(UserTask task);
 
-    int updateUserTask(UserTask desc);
+    int updateUserTask(UserTask task);
 
     // UserFollow
     UserFollow getUserFollow(int uid);
 
-    int addUserFollow(UserFollow desc);
+    int addUserFollow(UserFollow follow);
 
-    int updateUserFollow(UserFollow desc);
+    int updateUserFollow(UserFollow follow);
 }

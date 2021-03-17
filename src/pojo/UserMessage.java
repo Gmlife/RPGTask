@@ -7,12 +7,10 @@ import java.util.List;
 public class UserMessage {
     private int uid;
     private String messageId;
-    private List<String> messageIdList;
 
     public UserMessage(int uid, String messageId) {
         this.uid = uid;
         this.messageId = messageId;
-        this.messageIdList = CodeListUtil.codeToList(messageId);
     }
 
     public int getUid() {
@@ -31,11 +29,7 @@ public class UserMessage {
         this.messageId = messageId;
     }
 
-    public List<String> getMessageIdList() {
-        return messageIdList;
-    }
-
-    public void setMessageIdList(List<String> messageIdList) {
-        this.messageIdList = messageIdList;
+    public List<Integer> getMessageIdList() {
+        return CodeListUtil.codeToList(messageId);
     }
 }

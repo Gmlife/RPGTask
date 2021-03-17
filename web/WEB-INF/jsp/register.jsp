@@ -79,7 +79,7 @@
 </head>
 <body>
 <form class="reg_box rpg_font center" action="${pageContext.request.contextPath }/register.action"
-      method="post" onsubmit="return check()">
+      method="post">
 
     <div id="female_icon" class="female_icon">
         <c:forEach items="${icon_list}" var="l">

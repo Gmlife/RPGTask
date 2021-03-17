@@ -16,22 +16,11 @@
         $().ready(function () {
             $("#username").text("${username}");
         });
-
-        // 判断是登录账号和密码是否为空
-        function check() {
-            var username = $("#username").val();
-            var password = $("#password").val();
-            if (username === "" || password === "") {
-                $("#message").text("账号或密码不能为空！");
-                return false;
-            }
-            return true;
-        }
     </script>
 </head>
 <body>
 <form class="login_box rpg_font center" action="${pageContext.request.contextPath}/login.action"
-      method="post" onsubmit="return check()">
+      method="post">
     <ul class="center">
         <h1 class="rpg_6h">欢迎访问校园互助系统</h1>
         <li>
