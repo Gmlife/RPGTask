@@ -22,7 +22,7 @@
         where user_id = #{uid}
     </select>
 
-    <insert id="addUser" parameterType="User">
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="user_id" parameterType="User">
         insert into user(user_type, user_name, user_pass)
         values (#{userType}, #{userName}, #{userPass})
     </insert>
@@ -84,12 +84,12 @@
 
     <update id="addCoin">
         update user_desc
-        set coin = #{coin}
+        set coin = coin + #{coin}
         where user_id = #{uid}
     </update>
     <update id="addExp">
         update user_desc
-        set exp = #{exp}
+        set exp = exp + #{exp}
         where user_id = #{uid}
     </update>
 
@@ -143,12 +143,12 @@
     </select>
 
     <insert id="addUserTask" parameterType="UserTask">
-        insert into user_task(user_id, last_signed_time, signed_day, finish_sys_task_id, publish_task_id,
+        insert into user_task(user_id, last_signed_time, signed_day, publish_task_id, doing_task_id,
                               finish_task_id)
-        values (#{uid}, #{lastSignedTime}, #{signedDay}, #{finishSysTaskId}, #{publishTaskId}, #{finishTaskId})
+        values (#{uid}, #{lastSignedTime}, #{signedDay}, #{publishTaskId}, #{doingTaskId}, #{finishTaskId})
     </insert>
 
-    <update id="updateUserTask" parameterType="userMessage">
+    <update id="updateUserTask" parameterType="userTask">
         update user_task
         <set>
             <if test="lastSignedTime!=null">
@@ -157,11 +157,11 @@
             <if test="signedDay!=null">
                 signed_day=#{signedDay},
             </if>
-            <if test="finishSysTaskId!=null">
-                finish_sys_task_id=#{finishSysTaskId},
-            </if>
             <if test="publishTaskId!=null">
                 publish_task_id=#{publishTaskId},
+            </if>
+            <if test="doingTaskId!=null">
+                doing_task_id=#{doingTaskId},
             </if>
             <if test="finishTaskId!=null">
                 finish_task_id=#{finishTaskId},

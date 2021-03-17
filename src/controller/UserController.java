@@ -3,19 +3,15 @@ package controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import pojo.*;
 import service.BlogServiceImpl;
 import service.TaskServiceImpl;
 import service.UserServiceImpl;
-import util.CodeListUtil;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class UserController {
@@ -73,8 +69,7 @@ public class UserController {
             return "register";
         }
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        userService.addUser(new User(0, false, username, password));
-        int uid = userService.getUser(username).getUid();
+        int uid = userService.addUser(new User(0, false, username, password));
         userService.addUserDesc(new UserDesc(uid, nickname, sex, iconId + 1, "", "", 0, 0, df.format(new Date())));
         userService.addUserBlog(new UserBlog(uid, "[]"));
         userService.addUserMessage(new UserMessage(uid, "[]"));
@@ -99,32 +94,61 @@ public class UserController {
         int uid = user.getUid();
         UserDesc desc = userService.getUserDesc(uid);
         List<Blog> blogs = new ArrayList<>();
-        for (String id : CodeListUtil.codeToList(userService.getUserBlog(uid).getBlogId())) {
-            if(!id.equals("")){
+        for (String id : userService.getUserBlog(uid).getBlogIdList()) {
+            if (!id.equals("")) {
                 blogs.add(blogService.getBlog(Integer.parseInt(id)));
             }
         }
         List<Task> tasks = new ArrayList<>();
-        for (String id : CodeListUtil.codeToList(userService.getUserTask(uid).getDoingTaskId())) {
-            if(!id.equals("")){
+        for (String id : userService.getUserTask(uid).getDoingTaskIdList()) {
+            if (!id.equals("")) {
                 tasks.add(taskService.getTask(Integer.parseInt(id)));
             }
 
         }
+        UserTask u_task = userService.getUserTask(uid);
+        boolean can_sign = true;
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+        if (u_task.getLastSignedTime() != null) {
+            if (u_task.getLastSignedTime().equals(df.format(new Date()))) {
+                can_sign = false;
+            }
+        }
         model.addAttribute("desc", desc);
         model.addAttribute("blogs", blogs);
         model.addAttribute("tasks", tasks);
+        model.addAttribute("u_task", u_task);
+        model.addAttribute("can_sign", can_sign);
         addIconList(model);
         return "user";
     }
 
-    @RequestMapping(value ="/save_user.action",method = RequestMethod.POST)
-    public String saveUser(int uid,int iconId,String nickname,String signature){
-        UserDesc desc=userService.getUserDesc(uid);
+    @RequestMapping(value = "/save_user.action", method = RequestMethod.POST)
+    public String saveUser(int uid, int iconId, String nickname, String signature) {
+        UserDesc desc = userService.getUserDesc(uid);
         desc.setIcon(iconId);
         desc.setNickName(nickname);
         desc.setSignature(signature);
         userService.updateUserDesc(desc);
         return "redirect:user.action";
+    }
+
+    @PostMapping("/signed.action")
+    @ResponseBody
+    public Map<String, String> delete(@RequestParam("uid") String uid) {
+        int userId = Integer.parseInt(uid);
+        UserTask task = userService.getUserTask(userId);
+        Map<String, String> res = new HashMap<>();
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+        if (task.getLastSignedTime() == null || (!task.getLastSignedTime().equals(df.format(new Date())))) {
+            task.setLastSignedTime(df.format(new Date()));
+            task.setSignedDay(task.getSignedDay() + 1);
+            userService.addCoin(userId, 100);
+            userService.updateUserTask(task);
+            res.put("res", "success");
+        } else {
+            res.put("res", "fail");
+        }
+        return res;
     }
 }

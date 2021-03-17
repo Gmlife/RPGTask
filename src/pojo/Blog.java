@@ -10,15 +10,13 @@ public class Blog {
     private String blogText;
     private String blogCommit;
     private boolean verifyState;
-    private List<String> blogCommitIdList;
 
-    public Blog(int blogId, String blogTitle, String blogText, boolean verifyState, String blogCommit) {
+    public Blog(int blogId, String blogTitle, String blogText, String blogCommit, boolean verifyState) {
         this.blogId = blogId;
         this.blogTitle = blogTitle;
         this.blogText = blogText;
         this.blogCommit = blogCommit;
         this.verifyState = verifyState;
-        this.blogCommitIdList = CodeListUtil.codeToList(blogCommit);
     }
 
     public int getBlogId() {
@@ -61,11 +59,7 @@ public class Blog {
         this.verifyState = verifyState;
     }
 
-    public List<String> getBlogCommitIdList() {
-        return blogCommitIdList;
-    }
-
-    public void setBlogCommitIdList(List<String> blogCommitIdList) {
-        this.blogCommitIdList = blogCommitIdList;
+    public List<Integer> getBlogCommitIdList() {
+        return CodeListUtil.codeToList(blogCommit);
     }
 }

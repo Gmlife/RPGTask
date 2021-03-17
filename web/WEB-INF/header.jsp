@@ -23,11 +23,34 @@
     <link href="${pageContext.request.contextPath}/css/side_bar.css" type=text/css rel=stylesheet>
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="${pageContext.request.contextPath}/js/ueditor-1.4.3.3/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="${pageContext.request.contextPath}/js/ueditor-1.4.3.3/_examples/editor_api.js"></script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8"
+            src="${pageContext.request.contextPath}/js/ueditor-1.4.3.3/lang/zh-cn/zh-cn.js"></script>
 </head>
 <script>
     $().ready(function () {
         $("#exp_num")[0].style.width = "${desc.exp}%";
     });
+
+    function sign(uid) {
+        $.ajax({
+            type: "post",
+            url: "${pageContext.request.contextPath}/signed.action",
+            data: {"uid": uid},
+            dataType: "json",
+            success: function () {
+                location.reload();
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
 </script>
 <body>
 <header>
@@ -87,8 +110,13 @@
             <label style="visibility: hidden">${desc.title}</label>
         </div>
         <div class="day_signed">
-            <p>当前已签到 0 天</p>
-            <button>签到</button>
+            <p class="rpg_font rpg_4h">当前已签到<b class="rpg_font rpg_4h red">${u_task.signedDay}</b>天</p>
+            <c:if test="${can_sign == true}">
+                <button class="rpg_4h rpg_font" id="sign_bt" onclick="sign(${desc.uid})">签到</button>
+            </c:if>
+            <c:if test="${can_sign == false}">
+                <button class="rpg_4h rpg_font" id="sign_bt" style="pointer-events: none;">已签到</button>
+            </c:if>
         </div>
         <div class="menu">
             <ul>
@@ -124,6 +152,11 @@
                 </c:if>
             </ul>
         </div>
+        <c:if test="${cur_page == 'task'}">
+            <form class="task_edit" action="${pageContext.request.contextPath}/add_task.action" method="post">
+                <p>test</p>
+            </form>>
+        </c:if>
     </aside>
     <main>
 

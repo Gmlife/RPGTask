@@ -11,9 +11,7 @@ public class UserTask {
     private String publishTaskId;
     private String doingTaskId;
     private String finishTaskId;
-    private List<String> publishTaskIdList;
-    private List<String> doingTaskIdList;
-    private List<String> finishTaskIdList;
+
 
     public UserTask(int uid, String lastSignedTime, int signedDay, String publishTaskId, String doingTaskId, String finishTaskId) {
         this.uid = uid;
@@ -22,9 +20,6 @@ public class UserTask {
         this.doingTaskId = doingTaskId;
         this.publishTaskId = publishTaskId;
         this.finishTaskId = finishTaskId;
-        this.doingTaskIdList = CodeListUtil.codeToList(doingTaskId);
-        this.publishTaskIdList = CodeListUtil.codeToList(publishTaskId);
-        this.finishTaskIdList = CodeListUtil.codeToList(finishTaskId);
     }
 
     public int getUid() {
@@ -75,27 +70,18 @@ public class UserTask {
         this.finishTaskId = finishTaskId;
     }
 
-    public List<String> getDoingTaskIdList() {
-        return doingTaskIdList;
+    public List<Integer> getDoingTaskIdList() {
+        return CodeListUtil.codeToList(doingTaskId);
     }
 
-    public void setDoingTaskIdList(List<String> doingTaskIdList) {
-        this.doingTaskIdList = doingTaskIdList;
+
+    public List<Integer> getPublishTaskIdList() {
+        return CodeListUtil.codeToList(publishTaskId);
     }
 
-    public List<String> getPublishTaskIdList() {
-        return publishTaskIdList;
+
+    public List<Integer> getFinishTaskIdList() {
+        return CodeListUtil.codeToList(finishTaskId);
     }
 
-    public void setPublishTaskIdList(List<String> publishTaskIdList) {
-        this.publishTaskIdList = publishTaskIdList;
-    }
-
-    public List<String> getFinishTaskIdList() {
-        return finishTaskIdList;
-    }
-
-    public void setFinishTaskIdList(List<String> finishTaskIdList) {
-        this.finishTaskIdList = finishTaskIdList;
-    }
 }
