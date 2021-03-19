@@ -6,12 +6,14 @@ public class User {
     // user = false , admin = true
     private String userName;
     private String userPass;
+    private boolean isBan;
 
-    public User(int uid, boolean userType, String userName, String userPass) {
+    public User(int uid, boolean userType, String userName, String userPass, boolean isBan) {
         this.uid = uid;
         this.userType = userType;
         this.userName = userName;
         this.userPass = userPass;
+        this.isBan = isBan;
     }
 
     public int getUid() {
@@ -44,5 +46,13 @@ public class User {
 
     public void setUserPass(String userPass) {
         this.userPass = userPass;
+    }
+
+    public boolean getIsBan() {
+        return isBan;
+    }
+
+    public void setIsBan(boolean isBan) {
+        this.isBan = isBan;
     }
 }

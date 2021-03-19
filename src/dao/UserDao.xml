@@ -23,8 +23,8 @@
     </select>
 
     <insert id="addUser" useGeneratedKeys="true" keyProperty="user_id" parameterType="User">
-        insert into user(user_type, user_name, user_pass)
-        values (#{userType}, #{userName}, #{userPass})
+        insert into user(user_type, user_name, user_pass, is_ban)
+        values (#{userType}, #{userName}, #{userPass}, #{isBan})
     </insert>
 
     <update id="updateUser" parameterType="user">
@@ -35,6 +35,16 @@
             </if>
         </set>
         where user_id=#{uid}
+    </update>
+
+    <update id="setUserBan" parameterType="boolean">
+        update user
+        <set>
+            <if test="isBan!=null">
+                is_ban=#{isBan}
+            </if>
+        </set>
+        where user_id =#{uid}
     </update>
 
     <delete id="deleteUser">

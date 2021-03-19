@@ -5,17 +5,14 @@
     function deleteTask(tid) {
         var res = confirm("真的要删除该任务吗?");
         if (res === true) {
-            $.ajax({
-                type: "post",
-                url: "${pageContext.request.contextPath}/delete_task.action",
-                data: {"tid": tid},
-                dataType: "json",
-                success: function () {
+            $.post("${pageContext.request.contextPath}/task/delete.action",{"tid": tid},function (data) {
+                if (data === "ok") {
+                    alert("删除成功！");
                     location.reload();
-                },
-                error: function () {
-                    alert("error");
+                } else {
+                    alert("删除失败!");
                 }
+
             })
         }
     }

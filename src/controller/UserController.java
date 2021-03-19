@@ -69,7 +69,7 @@ public class UserController {
             return "register";
         }
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        int uid = userService.addUser(new User(0, false, username, password));
+        int uid = userService.addUser(new User(0, false, username, password,false));
         userService.addUserDesc(new UserDesc(uid, nickname, sex, iconId + 1, "", "", 0, 0, df.format(new Date())));
         userService.addUserBlog(new UserBlog(uid, "[]"));
         userService.addUserMessage(new UserMessage(uid, "[]"));
@@ -94,17 +94,12 @@ public class UserController {
         int uid = user.getUid();
         UserDesc desc = userService.getUserDesc(uid);
         List<Blog> blogs = new ArrayList<>();
-        for (String id : userService.getUserBlog(uid).getBlogIdList()) {
-            if (!id.equals("")) {
-                blogs.add(blogService.getBlog(Integer.parseInt(id)));
-            }
+        for (int id : userService.getUserBlog(uid).getBlogIdList()) {
+            blogs.add(blogService.getBlog(id));
         }
         List<Task> tasks = new ArrayList<>();
-        for (String id : userService.getUserTask(uid).getDoingTaskIdList()) {
-            if (!id.equals("")) {
-                tasks.add(taskService.getTask(Integer.parseInt(id)));
-            }
-
+        for (int id : userService.getUserTask(uid).getDoingTaskIdList()) {
+            tasks.add(taskService.getTask(id));
         }
         UserTask u_task = userService.getUserTask(uid);
         boolean can_sign = true;
@@ -123,19 +118,23 @@ public class UserController {
         return "user";
     }
 
-    @RequestMapping(value = "/save_user.action", method = RequestMethod.POST)
+    @PostMapping("/user/update.action")
+    @ResponseBody
     public String saveUser(int uid, int iconId, String nickname, String signature) {
         UserDesc desc = userService.getUserDesc(uid);
         desc.setIcon(iconId);
         desc.setNickName(nickname);
         desc.setSignature(signature);
-        userService.updateUserDesc(desc);
-        return "redirect:user.action";
+        int row = userService.updateUserDesc(desc);
+        if (row > 0)
+            return "ok";
+        else
+            return "fail";
     }
 
     @PostMapping("/signed.action")
     @ResponseBody
-    public Map<String, String> delete(@RequestParam("uid") String uid) {
+    public String signed(@RequestParam("uid") String uid) {
         int userId = Integer.parseInt(uid);
         UserTask task = userService.getUserTask(userId);
         Map<String, String> res = new HashMap<>();
@@ -145,10 +144,9 @@ public class UserController {
             task.setSignedDay(task.getSignedDay() + 1);
             userService.addCoin(userId, 100);
             userService.updateUserTask(task);
-            res.put("res", "success");
+            return "ok";
         } else {
-            res.put("res", "fail");
+            return "fail";
         }
-        return res;
     }
 }

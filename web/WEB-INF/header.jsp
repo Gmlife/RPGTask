@@ -39,18 +39,25 @@
     });
 
     function sign(uid) {
-        $.ajax({
-            type: "post",
-            url: "${pageContext.request.contextPath}/signed.action",
-            data: {"uid": uid},
-            dataType: "json",
-            success: function () {
+        $.post("${pageContext.request.contextPath}/signed.action", {"uid": uid}, function (data) {
+            if (data === "ok") {
+                alert("签到成功！");
                 location.reload();
-            },
-            error: function () {
-                alert("error");
+            } else {
+                alert("签到失败!");
             }
-        });
+        })
+    }
+
+    function addTask() {
+        $.post("${pageContext.request.contextPath}/task/add.action", $("#task_editor").serialize(), function (data) {
+            if (data === "ok") {
+                alert("发布成功！");
+                location.reload();
+            } else {
+                alert("发布失败!");
+            }
+        })
     }
 </script>
 <body>
@@ -154,9 +161,11 @@
             </ul>
         </div>
         <c:if test="${cur_page == 'task'}">
-            <form class="task_edit" action="${pageContext.request.contextPath}/add_task.action" method="post">
+            <form class="task_edit" id="task_editor">
                 <p>test</p>
-            </form>>
+                <button onclick="addTask()">发布任务</button>
+            </form>
+
         </c:if>
     </aside>
     <main>

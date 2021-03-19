@@ -3,6 +3,7 @@ package controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pojo.Blog;
@@ -27,10 +28,17 @@ public class BlogController {
         UserDesc desc;
         desc = userService.getUserDesc(user.getUid());
         List<Blog> blogs;
-        blogs=  blogService.getAllBlog();
+        blogs = blogService.getAllBlog();
         model.addAttribute("desc", desc);
-        model.addAttribute("blog_list",blogs);
+        model.addAttribute("blog_list", blogs);
         return "blog_edit";
+    }
+
+    @RequestMapping(value = "/blog/{blogId}", method = RequestMethod.GET)
+    public String viewBlog(@PathVariable int blogId, Model model) {
+        Blog blog = blogService.getBlog(blogId);
+        model.addAttribute(blog);
+        return "blog_info";
     }
 }
 
