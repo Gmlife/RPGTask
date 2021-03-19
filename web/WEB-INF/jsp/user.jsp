@@ -2,42 +2,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <script>
+    const chara_path = "${pageContext.request.contextPath }/images/character";
     $().ready(function () {
-        if (${desc.sex}===
-        true
-    )
-        {
-            $("#cur_icon")[0].src = "${pageContext.request.contextPath }/images/character/female/female" +
-                ${desc.icon}+".png";
-        }
-    else
-        {
-            $("#cur_icon")[0].src = "${pageContext.request.contextPath }/images/character/male/male" +
-                ${desc.icon}+".png";
-        }
         $("#iconId").val("${desc.icon}");
-        var li = $("#icon_selector>li");
+        if (${desc.sex == true})
+            $("#cur_icon")[0].src = chara_path + "/female/female" + ${desc.icon}+".png";
+        else
+            $("#cur_icon")[0].src = chara_path + "/male/male" + ${desc.icon}+".png";
+        const li = $("#icon_selector>li");
         for (let i = 1; i <= li.length; i++) {
             $(li[i - 1]).click(function () {
-                if (${desc.sex}===
-                true
-            )
-                {
-                    $("#cur_icon")[0].src = "${pageContext.request.contextPath }/images/character/female/female" +
-                        i.toString() + ".png";
-                }
-            else
-                {
-                    $("#cur_icon")[0].src = "${pageContext.request.contextPath }/images/character/male/male" +
-                        i.toString() + ".png";
-                }
+                if (${desc.sex == true})
+                    $("#cur_icon")[0].src = chara_path + "/female/female" + i.toString() + ".png";
+                else
+                    $("#cur_icon")[0].src = chara_path + "/male/male" + i.toString() + ".png";
                 $("#iconId").val(i);
             })
         }
     })
+
+    function updateUser() {
+        $.post("${pageContext.request.contextPath}/user/update.action", $("#desc_editor").serialize(), function (data) {
+            if (data === "ok") {
+                alert("保存成功！");
+                location.reload();
+            } else {
+                alert("保存失败！");
+            }
+        })
+    }
 </script>
 <div class="user_editor">
-    <form class="desc_editor" action="${pageContext.request.contextPath}/save_user.action" method="post">
+    <form class="desc_editor" id="desc_editor">
         <p class="main_title rpg_font rpg_5h">用户详情编辑</p>
         <ul class="icon_selector" id="icon_selector">
             <c:if test="${desc.sex==true}">
@@ -70,7 +66,7 @@
                           autofocus>${desc.signature}</textarea>
             </li>
             <li>
-                <button class="rpg_4h rpg_font save_button" type="submit">保存</button>
+                <button class="rpg_4h rpg_font save_button" onclick="updateUser()">保存</button>
             </li>
             <li>
         </ul>
@@ -96,7 +92,8 @@
             <ul>
                 <c:forEach items="${blogs}" var="b">
                     <li>
-                        <a class="blog_title rpg_font rpg_8h" href="${pageContext.request.contextPath}/blog/${b.blogId}">${b.blogTitle}</a>
+                        <a class="blog_title rpg_font rpg_8h"
+                           href="${pageContext.request.contextPath}/blog/${b.blogId}">${b.blogTitle}</a>
                     </li>
                 </c:forEach>
             </ul>
