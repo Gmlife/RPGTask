@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+
          pageEncoding="UTF-8" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,7 +11,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   https://github.com/Gmlife/RPGTask/pull/7/conflict?name=web%252FWEB-INF%252Fjsp%252Ftask.jsp&ancestor_oid=a6a351b9bf8772c0633d5a1309f10791cfd55389&base_oid=1d01b19ca223536ece6412f72d54a0bef0130f68&head_oid=a20e4ee28534654908639343a377abf74b133193 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>校园互助系统</title>
     <link rel="icon" type="image/png" sizes="16x16"
           href="${pageContext.request.contextPath }/images/RPGTask.png">

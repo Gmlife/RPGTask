@@ -79,5 +79,4 @@
     </ul>
 </div>
 
-
 <%@include file="/WEB-INF/footer.jsp" %>
