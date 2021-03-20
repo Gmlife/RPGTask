@@ -14,10 +14,20 @@ public class TaskService implements TaskServiceImpl {
     @Autowired
     private TaskDao taskDao;
 
+    @Override
+    public List<Task> getAllTask(String key) {
+        return switch (key) {
+            case "Date_Desc" -> taskDao.getTaskSortByIdDesc();
+            case "Award" -> taskDao.getTaskSortByAward();
+            case "Award_Desc" -> taskDao.getTaskSortByAwardDesc();
+            case "Judge" -> taskDao.getJudgeTask();
+            default -> taskDao.getTaskSortById();
+        };
+    }
 
     @Override
-    public List<Task> getAllTask() {
-        return taskDao.getAllTask();
+    public List<Task> searchTask(String key) {
+        return taskDao.searchTask(key);
     }
 
     @Override
@@ -39,4 +49,5 @@ public class TaskService implements TaskServiceImpl {
     public int deleteTask(int taskId) {
         return taskDao.deleteTask(taskId);
     }
+
 }

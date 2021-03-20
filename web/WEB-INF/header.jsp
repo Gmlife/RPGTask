@@ -50,14 +50,22 @@
     }
 
     function addTask() {
-        $.post("${pageContext.request.contextPath}/task/add.action", $("#task_editor").serialize(), function (data) {
-            if (data === "ok") {
-                alert("发布成功！");
-                location.reload();
-            } else {
-                alert("发布失败!");
-            }
-        })
+        let check = true;
+        if ($("#task_title").val() === "") check = false;
+        if ($("task_desc").val() === "") check = false;
+        if ($("task_award").val() === "") check = false;
+        if (check) {
+            $.post("${pageContext.request.contextPath}/task/add.action", $("#task_editor").serialize(), function (data) {
+                if (data === "ok") {
+                    alert("发布成功！请等待管理员审核！");
+                    location.reload();
+                } else {
+                    alert("发布失败!");
+                }
+            })
+        } else {
+            alert("不能有空字段!");
+        }
     }
 </script>
 <body>
@@ -161,14 +169,17 @@
             </ul>
         </div>
         <c:if test="${cur_page == 'task'}">
-            <form class="task_edit" id="task_editor">
-                <p>test</p>
-                <button onclick="addTask()">发布任务</button>
+            <form class="task_edit" id="task_editor" onsubmit="return false">
+                <input class="a_title rpg_font rpg_font rpg_3h" type="text" id="task_title" name="task_title"
+                       placeholder="在此输入任务标题" required>
+                <textarea class="a_desc rpg_font rpg_3h" id="task_desc" name="task_desc" placeholder="在此输入任务描述"
+                          required></textarea>
+                <input class="a_award rpg_font rpg_3h" type="number" id="task_award" name="task_award"
+                       placeholder="奖励金额" required>
+                <img class="icon_3h" src="${pageContext.request.contextPath}/images/common_ui/coin.png">
+                <input type="hidden" id="p_uid" name="p_uid" value="${desc.uid}">
             </form>
-
+            <button class="rpg_font rpg_2h side_button" onclick="addTask()">发布任务</button>
         </c:if>
     </aside>
     <main>
-
-
-

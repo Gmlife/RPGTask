@@ -13,7 +13,7 @@
         where blog_id = #{blogId}
     </select>
 
-    <insert id="addBlog" useGeneratedKeys="true" keyProperty="blog_id" parameterType="Blog">
+    <insert id="addBlog" useGeneratedKeys="true" keyProperty="blogId" parameterType="Blog">
         insert into blog(blog_title, blog_text, blog_commit, verify_state)
         values (#{blogTitle}, #{blogText}, #{blogCommit}, #{verifyState})
     </insert>

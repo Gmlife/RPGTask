@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class TaskController {
@@ -25,12 +26,46 @@ public class TaskController {
     private MessageServiceImpl messageService;
 
     @RequestMapping(value = "/task.action", method = RequestMethod.GET)
-    public String toTask(Model model, HttpSession session) {
+    public String toTask(Model model, HttpSession session, @RequestParam("sort") String key) {
+        fillUserInfo(model, session);
+        List<Task> tasks;
+        tasks = taskService.getAllTask(key);
+        System.out.println(key);
+        addSortWord(key, model);
+        model.addAttribute("task_list", tasks);
+        model.addAttribute("cur_page", "task");
+        return "task";
+    }
+
+    private void addSortWord(String sort, Model model) {
+        switch (sort) {
+            case "Date_Desc" -> {
+                model.addAttribute("sort", "发布日期");
+                model.addAttribute("sd", "_desc");
+            }
+            case "Award" -> model.addAttribute("sort", "任务奖励");
+            case "Award_Desc" -> {
+                model.addAttribute("sort", "任务奖励");
+                model.addAttribute("sd", "_desc");
+            }
+            default -> model.addAttribute("sort", "发布日期");
+        }
+    }
+
+    @RequestMapping(value = "/judge.action", method = RequestMethod.GET)
+    public String toJudge(Model model, HttpSession session) {
+        fillUserInfo(model, session);
+        List<Task> tasks;
+        tasks = taskService.getAllTask("Judge");
+        model.addAttribute("task_list", tasks);
+        model.addAttribute("cur_page", "judge");
+        return "judge";
+    }
+
+    public void fillUserInfo(Model model, HttpSession session) {
         User user = (User) session.getAttribute("USER_SESSION");
         UserDesc desc;
         desc = userService.getUserDesc(user.getUid());
-        List<Task> tasks;
-        tasks = taskService.getAllTask();
         UserTask u_task = userService.getUserTask(user.getUid());
         boolean can_sign = true;
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
@@ -39,28 +74,27 @@ public class TaskController {
                 can_sign = false;
             }
         }
-
         model.addAttribute("u_task", u_task);
         model.addAttribute("desc", desc);
-        model.addAttribute("task_list", tasks);
         model.addAttribute("can_sign", can_sign);
-        model.addAttribute("cur_page", "task");
-        return "task";
     }
 
-    @PostMapping(value = "/task/add.action")
+    @PostMapping("/task/add.action")
     @ResponseBody
-    public String addTask(@RequestParam("taskTitle") String taskTitle, @RequestParam("taskIcon") int taskIcon,
-                          @RequestParam("taskDesc") String taskDesc, @RequestParam("awardCoin") int awardCoin,
-                          @RequestParam("p_uid") int p_uid) {
-        Task task = new Task(0, taskTitle, taskIcon, taskDesc, awardCoin, 0, p_uid, 0, false);
+    public String addTask(@RequestParam("task_title") String taskTitle, @RequestParam("task_desc") String taskDesc,
+                          @RequestParam("task_award") int awardCoin, @RequestParam("p_uid") int p_uid) {
+        if (taskTitle.isEmpty() || taskDesc.isEmpty())
+            return "fail";
+        Random random = new Random();
+        int task_icon = Math.abs(random.nextInt() % 15);
+        Task task = new Task(0, taskTitle, task_icon + 1, taskDesc, awardCoin, 0, p_uid, 0, false);
         int tid = taskService.addTask(task);
         UserTask userTask = userService.getUserTask(p_uid);
         List<Integer> tasks = userTask.getPublishTaskIdList();
         tasks.add(tid);
         userTask.setPublishTaskId(tasks.toString());
         userService.updateUserTask(userTask);
-        return "redirect:task.action";
+        return "ok";
     }
 
     @PostMapping("/task/delete.action")
@@ -73,13 +107,7 @@ public class TaskController {
         //有人曾接受过该任务，需要发送任务已被删除邮件，同时根据完成状态，去除接收者的任务信息中的id索引。
         if (task.getReceiveUserId() != 0) {
             int r_uid = task.getReceiveUserId();
-            Message message = new Message(0, task.getPublishUserId(), "任务" + task.getTaskTitle() + "已经被发布者删除", task.getReceiveUserId());
-            int message_id = messageService.addMessage(message);
-            UserMessage box = userService.getUserMessage(r_uid);
-            List<Integer> mails = box.getMessageIdList();
-            mails.add(message_id);
-            box.setMessageId(mails.toString());
-            userService.updateUserMessage(box);
+            sendMessage(task.getPublishUserId(), r_uid, "任务" + task.getTaskTitle() + "已经被发布者删除");
             if (task.getTaskState() == 1) //accept
             {
                 UserTask userTask = userService.getUserTask(r_uid);
@@ -157,5 +185,62 @@ public class TaskController {
         }
         return "ok";
     }
+
+    @PostMapping("/task/accept.action")
+    @ResponseBody
+    public String acceptTask(@RequestParam("a_uid") int a_uid, @RequestParam("tid") String tid) {
+        if (isNotAdmin(a_uid)) {
+            return "fail";
+        }
+        int taskId = Integer.parseInt(tid);
+        Task task = taskService.getTask(taskId);
+        if (task == null)
+            return "fail";
+        task.setVerifyState(true);
+        int row = taskService.updateTask(task);
+        if (row > 0)
+            return "ok";
+        else
+            return "fail";
+    }
+
+    @PostMapping("/task/refuse.action")
+    @ResponseBody
+    public String refuseTask(@RequestParam("a_uid") int a_uid, @RequestParam("tid") String tid) {
+        if (isNotAdmin(a_uid)) {
+            return "fail";
+        }
+        int taskId = Integer.parseInt(tid);
+        Task task = taskService.getTask(taskId);
+        if (task == null)
+            return "fail";
+        sendMessage(a_uid, task.getPublishUserId(), "很遗憾，您发布的任务 《" + task.getTaskTitle() + "》 因不符合任务规范，未能通过审核！");
+        UserTask userTask = userService.getUserTask(task.getPublishUserId());
+        List<Integer> tasks = userTask.getPublishTaskIdList();
+        tasks.removeIf(n -> (n == taskId));
+        userTask.setPublishTaskId(tasks.toString());
+        userService.updateUserTask(userTask);
+        int row = taskService.deleteTask(taskId);
+        if (row > 0)
+            return "true";
+        else
+            return "fail";
+    }
+
+    public boolean isNotAdmin(int uid) {
+        User user = userService.getUserByUid(uid);
+        return !user.getUserType();
+    }
+
+    public void sendMessage(int from_uid, int to_uid, String content) {
+        Message message = new Message(0, from_uid, content, to_uid);
+        int message_id = messageService.addMessage(message);
+        UserMessage box = userService.getUserMessage(to_uid);
+        List<Integer> mails = box.getMessageIdList();
+        mails.add(message_id);
+        box.setMessageId(mails.toString());
+        userService.updateUserMessage(box);
+    }
+
 }
 

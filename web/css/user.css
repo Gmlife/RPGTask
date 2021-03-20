@@ -74,7 +74,7 @@
     resize: none;
 }
 
-.desc_editor .save_button {
+.save_button {
     background: url("../images/common_ui/button2.png");
     background-size: 100%;
     width: 200px;
@@ -85,7 +85,8 @@
     cursor: pointer;
     vertical-align: top;
     position: absolute;
-    top: 126px;
+    top: 208px;
+    right: 536px;
     color: white;
 }
 

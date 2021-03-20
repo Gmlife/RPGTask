@@ -5,7 +5,9 @@ import pojo.Task;
 import java.util.List;
 
 public interface TaskServiceImpl {
-    List<Task> getAllTask();
+    List<Task> getAllTask(String key);
+
+    List<Task> searchTask(String key);
 
     Task getTask(int taskId);
 
