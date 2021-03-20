@@ -2,18 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="dao.TaskDao">
-
-    <select id="getAllTask" resultType="task">
+    <select id="getAllJudgeTask" resultType="task">
         select *
         from task
+        where verify_state = false;
     </select>
+
     <select id="getTask" resultType="task">
         select *
         from task
         where task_id = #{taskId}
     </select>
 
-    <insert id="addTask" useGeneratedKeys="true" keyProperty="task_id" parameterType="Task">
+    <select id="getTaskSortById" resultType="task">
+        select *
+        from task
+        order by task_id asc
+    </select>
+
+    <select id="getTaskSortByIdDesc" resultType="task">
+        select *
+        from task
+        order by task_id desc
+    </select>
+
+    <select id="getTaskSortByAward" resultType="task">
+        select *
+        from task
+        order by award_coin asc
+    </select>
+    <select id="getTaskSortByAwardDesc" resultType="task">
+        select *
+        from task
+        order by award_coin asc
+    </select>
+
+    <select id="searchTask" resultType="task">
+        select *
+        from task
+        where task_title like concat('%',#{key},'%')
+    </select>
+
+    <insert id="addTask" useGeneratedKeys="true" keyProperty="taskId" parameterType="Task">
         insert into task(task_title, task_icon, task_desc, award_coin, task_state, publish_user_id, receive_user_id,
                          verify_state)
         values (#{taskTitle}, #{taskIcon}, #{taskDesc}, #{awardCoin}, #{taskState}, #{publishUserId}, #{receiveUserId},

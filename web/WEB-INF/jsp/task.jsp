@@ -2,10 +2,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <script>
+    function changeSort() {
+        const task_path = "${pageContext.request.contextPath}/task.action";
+        if (${sort=="发布日期"}) {
+            if (${sd==null})
+                location.href = (task_path + "?sort=Date_Desc");
+            if (${sd=="_desc"})
+                location.href = (task_path + "?sort=Date");
+        }
+        if (${sort=="任务奖励"}) {
+            if (${sd==null})
+                location.href = (task_path + "?sort=Award_Desc");
+            if (${sd=="_desc"})
+                location.href = (task_path + "?sort=Award");
+        }
+    }
+
     function deleteTask(tid) {
         var res = confirm("真的要删除该任务吗?");
         if (res === true) {
-            $.post("${pageContext.request.contextPath}/task/delete.action",{"tid": tid},function (data) {
+            $.post("${pageContext.request.contextPath}/task/delete.action", {"tid": tid}, function (data) {
                 if (data === "ok") {
                     alert("删除成功！");
                     location.reload();
@@ -19,6 +35,11 @@
 </script>
 <div class="task_list">
     <p class="main_title rpg_font rpg_5h">任务列表</p>
+    <div class="submenu">
+        <a class="menu_button rpg_font rpg_3h" onclick="changeSort()">${sort}</a>
+        <a class="drop_button"></a>
+        <img class="sort_icon" onclick="changeSort()" src="${pageContext.request.contextPath}/images/common_ui/sort${sd}.png">
+    </div>
     <ul>
         <c:forEach items="${task_list}" var="t">
             <c:if test="${t.verifyState == true}">

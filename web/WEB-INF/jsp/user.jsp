@@ -33,7 +33,7 @@
     }
 </script>
 <div class="user_editor">
-    <form class="desc_editor" id="desc_editor">
+    <form class="desc_editor" id="desc_editor" onsubmit="return false">
         <p class="main_title rpg_font rpg_5h">用户详情编辑</p>
         <ul class="icon_selector" id="icon_selector">
             <c:if test="${desc.sex==true}">
@@ -65,14 +65,12 @@
                 <textarea class="rpg_font rpg_3h rpg_font" type="text" id="signature" name="signature" required
                           autofocus>${desc.signature}</textarea>
             </li>
-            <li>
-                <button class="rpg_4h rpg_font save_button" onclick="updateUser()">保存</button>
-            </li>
-            <li>
+
         </ul>
         <input id="uid" name="uid" type="hidden" value="${desc.uid}">
         <input id="iconId" name="iconId" type="hidden" value="0">
     </form>
+    <button class="rpg_4h rpg_font save_button" onclick="updateUser()">保存</button>
     <div class="user_tb_info">
         <div class="doing_task">
             <p class="user_task_title rpg_font rpg_5h">进行中的任务</p>

@@ -12,9 +12,8 @@ body {
 }
 
 .main_content aside {
-    height: 100%;
     width: 432px;
-    min-height: 492px;
+    height: auto;
     position: relative;
     display: block;
     float: right;
@@ -32,38 +31,29 @@ aside .user_profile {
     background-image: url("../images/back/user_profile_back.png");
     background-repeat: no-repeat;
     background-position: center;
-    display: table-cell;
-    right: 80px;
-    top: 0;
+    display: block;
     width: 320px;
     height: 460px;
     border: 16px ridge darkgoldenrod;
-    position: absolute;
 }
 
 aside .day_signed {
     background-image: url("../images/back/user_profile_back.png");
     background-repeat: no-repeat;
     background-position: center;
-    display: table-cell;
-    right: 80px;
-    top: 492px;
+    display: block;
     width: 320px;
     height: 142px;
     border: 16px ridge darkgoldenrod;
-    position: absolute;
 }
 aside .task_edit{
     background-image: url("../images/back/user_profile_back.png");
     background-repeat: no-repeat;
     background-position: center;
-    display: table-cell;
-    right: 80px;
-    top: 666px;
+    display: block;
     width: 320px;
     height: 460px;
     border: 16px ridge darkgoldenrod;
-    position: absolute;
 }
 
 .day_signed p {
@@ -127,4 +117,19 @@ main .user_editor {
     padding: 8px 300px 0 300px;
     border: 16px none darkgoldenrod;
     border-bottom-style: ridge;
+}
+.side_button{
+    background: url("../images/common_ui/button2.png");
+    background-size: contain;
+    width: 100px;
+    height: 32px;
+    text-align-last: center;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: top;
+    position: absolute;
+    bottom: 24px;
+    right: 104px;
+    color: white;
 }

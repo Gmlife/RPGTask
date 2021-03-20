@@ -9,7 +9,7 @@
         where message_id = #{messageId}
     </select>
 
-    <insert id="addMessage" useGeneratedKeys="true" keyProperty="message_id" parameterType="Message">
+    <insert id="addMessage" useGeneratedKeys="true" keyProperty="messageId" parameterType="Message">
         insert into message(message_user_id, message_text,message_target_id)
         values (#{messageUserId}, #{messageText}, #{messageTargetId})
     </insert>
