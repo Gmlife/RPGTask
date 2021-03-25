@@ -1,18 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String path = request.getContextPath();
+    String base = request.getScheme() + "://" + request.getServerName()
+            + ":" + request.getServerPort() + path;
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
     <title>注册界面 - 校园互助系统</title>
     <link rel="icon" type="image/png" sizes="16x16"
-          href="${pageContext.request.contextPath }/images/RPGTask.png">
+          href="<%=base%>/images/RPGTask.png">
     <meta http-equiv=Content-Type content="text/html; charset=utf-8">
-    <link href="${pageContext.request.contextPath}/css/reset.css" type=text/css rel=stylesheet>
-    <link href="${pageContext.request.contextPath}/css/pixel_style.css" type=text/css rel=stylesheet>
-    <link href="${pageContext.request.contextPath}/css/pixel_reg.css" type=text/css rel=stylesheet>
-    <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
+    <link href="<%=base%>/css/reset.css" type=text/css rel=stylesheet>
+    <link href="<%=base%>/css/pixel_style.css" type=text/css rel=stylesheet>
+    <link href="<%=base%>/css/pixel_reg.css" type=text/css rel=stylesheet>
+    <script src="<%=base%>/js/jquery-1.11.3.min.js"></script>
+    <script src="<%=base%>/js/jquery.dataTables.min.js"></script>
     <script>
         let icon_num = ${icon_num};
         let sex = ${sex};
@@ -78,17 +83,17 @@
     </script>
 </head>
 <body>
-<form class="reg_box rpg_font center" action="${pageContext.request.contextPath }/register.action"
+<form class="reg_box rpg_font center" action="<%=base%>/register.action"
       method="post">
 
     <div id="female_icon" class="female_icon">
         <c:forEach items="${icon_list}" var="l">
-            <img src="${pageContext.request.contextPath }/images/character/female/female${l.toString()}.png">
+            <img src="<%=base%>/images/character/female/female${l.toString()}.png">
         </c:forEach>
     </div>
     <div id="male_icon" class="male_icon">
         <c:forEach items="${icon_list}" var="l">
-            <img src="${pageContext.request.contextPath }/images/character/male/male${l.toString()}.png">
+            <img src="<%=base%>/images/character/male/male${l.toString()}.png">
         </c:forEach>
     </div>
     <ul class="reg_content">
@@ -109,7 +114,7 @@
         </li>
         <li>
             <button class="rpg_4h rpg_font reg_button" type="button"
-                    onclick=location.href="${pageContext.request.contextPath}/login.action">返回
+                    onclick=location.href="<%=base%>/login.action">返回
             </button>
             <button class="rpg_4h rpg_font reg_button" type="submit">注册</button>
         </li>

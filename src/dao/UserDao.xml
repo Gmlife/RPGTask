@@ -97,6 +97,14 @@
         set coin = coin + #{coin}
         where user_id = #{uid}
     </update>
+
+
+    <update id="subCoin">
+        update user_desc
+        set coin = coin - #{coin}
+        where user_id = #{uid}
+    </update>
+
     <update id="addExp">
         update user_desc
         set exp = exp + #{exp}

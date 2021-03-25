@@ -7,18 +7,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pojo.Blog;
+import pojo.Commit;
 import pojo.User;
 import pojo.UserDesc;
 import service.BlogServiceImpl;
+import service.CommitServiceImpl;
 import service.UserServiceImpl;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class BlogController {
     @Autowired
     private BlogServiceImpl blogService;
+    @Autowired
+    private CommitServiceImpl commitService;
     @Autowired
     private UserServiceImpl userService;
 
@@ -29,15 +34,20 @@ public class BlogController {
         desc = userService.getUserDesc(user.getUid());
         List<Blog> blogs;
         blogs = blogService.getAllBlog();
-        model.addAttribute("desc", desc);
+        model.addAttribute("my_desc", desc);
         model.addAttribute("blog_list", blogs);
         return "blog_edit";
     }
 
-    @RequestMapping(value = "/blog/{blogId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{blogId}/view.action", method = RequestMethod.GET)
     public String viewBlog(@PathVariable int blogId, Model model) {
         Blog blog = blogService.getBlog(blogId);
-        model.addAttribute(blog);
+        List<Commit> commits = new ArrayList<>();
+        for (int id : blog.getBlogCommitIdList()) {
+            commits.add(commitService.getCommit(id));
+        }
+        model.addAttribute("blog", blog);
+        model.addAttribute("commits", commits);
         return "blog_info";
     }
 }

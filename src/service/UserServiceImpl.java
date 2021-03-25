@@ -27,6 +27,8 @@ public interface UserServiceImpl {
 
     int addCoin(int uid, int coin);
 
+    int subCoin(int uid, int coin);
+
     int addExp(int uid, int exp);
 
     //UserBlog
