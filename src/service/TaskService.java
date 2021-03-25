@@ -17,10 +17,10 @@ public class TaskService implements TaskServiceImpl {
     @Override
     public List<Task> getAllTask(String key) {
         return switch (key) {
-            case "Date_Desc" -> taskDao.getTaskSortByIdDesc();
-            case "Award" -> taskDao.getTaskSortByAward();
-            case "Award_Desc" -> taskDao.getTaskSortByAwardDesc();
-            case "Judge" -> taskDao.getJudgeTask();
+            case "date_desc" -> taskDao.getTaskSortByIdDesc();
+            case "award" -> taskDao.getTaskSortByAward();
+            case "award_desc" -> taskDao.getTaskSortByAwardDesc();
+            case "judge" -> taskDao.getJudgeTask();
             default -> taskDao.getTaskSortById();
         };
     }

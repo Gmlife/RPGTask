@@ -1,5 +1,5 @@
 body {
-    background-image: url('../images/back/main_back.jpg');
+    background-image: url('../images/back/main_back.png');
     background-repeat: repeat;
     background-position: top;
 }
@@ -46,7 +46,7 @@ aside .day_signed {
     height: 142px;
     border: 16px ridge darkgoldenrod;
 }
-aside .task_edit{
+aside .send_area{
     background-image: url("../images/back/user_profile_back.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -86,22 +86,11 @@ aside .task_edit{
     float: left;
 }
 
-main .task_list {
+main .content {
     background-image: url("../images/back/wood.png");
     background-repeat: repeat;
     height: 100%;
     min-height: 1126px;
-    width: 1200px;
-    border: 16px ridge darkgoldenrod;
-    position: relative;
-}
-
-
-main .user_editor {
-    background-image: url("../images/back/wood.png");
-    background-repeat: repeat;
-    height: 100%;
-    min-height: 1000px;
     width: 1200px;
     border: 16px ridge darkgoldenrod;
     position: relative;

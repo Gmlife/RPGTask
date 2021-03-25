@@ -68,6 +68,11 @@ public class UserService implements UserServiceImpl {
     }
 
     @Override
+    public int subCoin(int uid, int coin) {
+        return userDao.subCoin(uid, coin);
+    }
+
+    @Override
     public int addExp(int uid, int exp) {
         return userDao.addExp(uid, exp);
     }

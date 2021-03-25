@@ -29,7 +29,6 @@ public class TaskController {
         fillUserInfo(model, session);
         List<Task> tasks;
         tasks = taskService.getAllTask(key);
-        System.out.println(key);
         addSortWord(key, model);
         model.addAttribute("task_list", tasks);
         model.addAttribute("cur_page", "task");
@@ -38,12 +37,12 @@ public class TaskController {
 
     private void addSortWord(String sort, Model model) {
         switch (sort) {
-            case "Date_Desc" -> {
+            case "date_desc" -> {
                 model.addAttribute("sort", "发布日期");
                 model.addAttribute("sd", "_desc");
             }
-            case "Award" -> model.addAttribute("sort", "任务奖励");
-            case "Award_Desc" -> {
+            case "award" -> model.addAttribute("sort", "任务奖励");
+            case "award_desc" -> {
                 model.addAttribute("sort", "任务奖励");
                 model.addAttribute("sd", "_desc");
             }
@@ -51,11 +50,23 @@ public class TaskController {
         }
     }
 
+    @RequestMapping(value = "/task/receive.action", method = RequestMethod.GET)
+    public String toReceive(Model model, HttpSession session, @RequestParam("sort") String key) {
+        fillUserInfo(model, session);
+        List<Task> tasks;
+        tasks = taskService.getAllTask(key);
+        addSortWord(key, model);
+        tasks.removeIf(n -> (n.getTaskState() != 0));
+        model.addAttribute("task_list", tasks);
+        model.addAttribute("cur_page", "receive");
+        return "task";
+    }
+
     @RequestMapping(value = "/judge.action", method = RequestMethod.GET)
     public String toJudge(Model model, HttpSession session) {
         fillUserInfo(model, session);
         List<Task> tasks;
-        tasks = taskService.getAllTask("Judge");
+        tasks = taskService.getAllTask("judge");
         model.addAttribute("task_list", tasks);
         model.addAttribute("cur_page", "judge");
         return "judge";
@@ -74,7 +85,7 @@ public class TaskController {
             }
         }
         model.addAttribute("u_task", u_task);
-        model.addAttribute("desc", desc);
+        model.addAttribute("my_desc", desc);
         model.addAttribute("can_sign", can_sign);
     }
 
@@ -84,15 +95,21 @@ public class TaskController {
                           @RequestParam("task_award") int awardCoin, @RequestParam("p_uid") int p_uid) {
         if (taskTitle.isEmpty() || taskDesc.isEmpty())
             return "fail";
+        UserDesc userDesc = userService.getUserDesc(p_uid);
+        if (userDesc.getCoin() < awardCoin) {
+            return "coin not enough";
+        }
         Random random = new Random();
         int task_icon = Math.abs(random.nextInt() % 15);
         Task task = new Task(0, taskTitle, task_icon + 1, taskDesc, awardCoin, 0, p_uid, 0, false);
-        int tid = taskService.addTask(task);
+        taskService.addTask(task);
+        int tid = task.getTaskId();
         UserTask userTask = userService.getUserTask(p_uid);
         List<Integer> tasks = userTask.getPublishTaskIdList();
         tasks.add(tid);
         userTask.setPublishTaskId(tasks.toString());
         userService.updateUserTask(userTask);
+        userService.subCoin(p_uid, awardCoin);
         return "ok";
     }
 
@@ -106,9 +123,9 @@ public class TaskController {
         //有人曾接受过该任务，需要发送任务已被删除邮件，同时根据完成状态，去除接收者的任务信息中的id索引。
         if (task.getReceiveUserId() != 0) {
             int r_uid = task.getReceiveUserId();
-            sendMessage(task.getPublishUserId(), r_uid, "任务" + task.getTaskTitle() + "已经被发布者删除");
             if (task.getTaskState() == 1) //accept
             {
+                sendMessage(task.getPublishUserId(), r_uid, "任务" + task.getTaskTitle() + "已经被发布者删除");
                 UserTask userTask = userService.getUserTask(r_uid);
                 List<Integer> tasks = userTask.getDoingTaskIdList();
                 tasks.removeIf(n -> (n == taskId));
@@ -168,6 +185,7 @@ public class TaskController {
         if (task.getTaskState() == 0) {
             task.setTaskState(2);
             userService.addCoin(task.getPublishUserId(), task.getAwardCoin());
+            taskService.updateTask(task);
         } else if (task.getTaskState() == 1) {
             task.setTaskState(2);
             userService.addCoin(task.getReceiveUserId(), task.getAwardCoin());
@@ -179,6 +197,7 @@ public class TaskController {
             tasks.add(taskId);
             userTask.setFinishTaskId(tasks.toString());
             userService.updateUserTask(userTask);
+            taskService.updateTask(task);
         } else {
             return "fail";
         }
@@ -213,17 +232,30 @@ public class TaskController {
         Task task = taskService.getTask(taskId);
         if (task == null)
             return "fail";
-        sendMessage(a_uid, task.getPublishUserId(), "很遗憾，您发布的任务 《" + task.getTaskTitle() + "》 因不符合任务规范，未能通过审核！");
+        sendMessage(a_uid, task.getPublishUserId(), "很遗憾，您发布的任务 《" + task.getTaskTitle() + "》 因不符合任务规范，未能通过审核！金币:"
+                + task.getAwardCoin() + "已退还！");
         UserTask userTask = userService.getUserTask(task.getPublishUserId());
         List<Integer> tasks = userTask.getPublishTaskIdList();
         tasks.removeIf(n -> (n == taskId));
         userTask.setPublishTaskId(tasks.toString());
         userService.updateUserTask(userTask);
+        userService.addCoin(task.getPublishUserId(), task.getAwardCoin());
         int row = taskService.deleteTask(taskId);
         if (row > 0)
             return "true";
         else
             return "fail";
+    }
+
+    @RequestMapping(value = "/task/search.action", method = RequestMethod.POST)
+    public String taskSearch(@RequestParam("search_text") String key, Model model, HttpSession session) {
+        fillUserInfo(model, session);
+        List<Task> tasks;
+        tasks = taskService.searchTask(key);
+        addSortWord(key, model);
+        model.addAttribute("task_list", tasks);
+        model.addAttribute("cur_page", "task");
+        return "task";
     }
 
     public boolean isNotAdmin(int uid) {
@@ -233,7 +265,8 @@ public class TaskController {
 
     public void sendMessage(int from_uid, int to_uid, String content) {
         Message message = new Message(0, from_uid, content, to_uid);
-        int message_id = messageService.addMessage(message);
+        messageService.addMessage(message);
+        int message_id = message.getMessageId();
         UserMessage box = userService.getUserMessage(to_uid);
         List<Integer> mails = box.getMessageIdList();
         mails.add(message_id);

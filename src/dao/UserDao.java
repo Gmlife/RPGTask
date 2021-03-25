@@ -1,5 +1,6 @@
 package dao;
 
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import pojo.*;
@@ -31,6 +32,8 @@ public interface UserDao {
     int updateUserDesc(UserDesc desc);
 
     int addCoin(@Param("uid") int uid, @Param("coin") int coin);
+
+    int subCoin(@Param("uid") int uid, @Param("coin") int coin);
 
     int addExp(@Param("uid") int uid, @Param("exp") int exp);
 

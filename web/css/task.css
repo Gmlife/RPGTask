@@ -1,15 +1,16 @@
-.task_list ul {
-    display: table;
-    position: relative;
+.content .task_info_list {
+    -moz-column-count:3; /* Firefox */
+    -webkit-column-count:3; /* Safari 和 Chrome */
+    column-count:3;
 }
 
-.task_list li {
+.content .task_info {
     position: relative;
     display: inline-block;
     margin: 20px 50px;
 }
 
-.task_list .task_head {
+.content .task_head {
     background-image: url("../images/back/t_title_back.png");
     background-repeat: no-repeat;
     position: relative;
@@ -19,8 +20,9 @@
     text-align: center;
 }
 
-.task_list .submenu {
-    background: none;
+.content .submenu {
+    background-image: url("../images/back/menu_back.png");
+    background-repeat: no-repeat;
     display: block;
     width: 100%;
     height: 50px;
@@ -28,43 +30,116 @@
     border-bottom-style: ridge;
 }
 
-.submenu .menu_button {
+.submenu .sort_group {
+    float: left;
+    height: 50px;
+    position: relative;
+}
+
+.sort_group .menu_button {
     background-image: url("../images/common_ui/sub_button.png");
     background-repeat: no-repeat;
     background-size: 100%;
     vertical-align: middle;
-    display: table-cell;
+    display: inline-block;
     width: 146px;
-    height: 50px;
+    height: 24px;
     cursor: pointer;
-    padding: 0 44px 0 10px;
+    padding: 13px 44px 13px 10px;
     text-align: center;
     color: white;
 }
 
-.submenu .drop_button {
+.sort_group .sub_button {
+    background-image: url("../images/common_ui/sub_button.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    vertical-align: middle;
+    position: absolute;
+    width: 146px;
+    height: 24px;
+    left: 171px;
+    cursor: pointer;
+    padding: 13px 44px 13px 10px;
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+.sort_group .drop_button {
     background-image: url("../images/common_ui/sub.png");
     background-repeat: no-repeat;
     background-size: 100%;
     vertical-align: top;
-    display: table-cell;
+    display: inline-block;
     width: 70px;
     height: 50px;
     cursor: pointer;
 }
 
-.submenu .sort_icon {
+.sort_group .sort_icon {
     position: absolute;
-    left: 167px;
-    top: 82px;
+    left: 330px;
+    top: 14px;
     width: 18px;
     cursor: pointer;
+}
+
+.submenu .search_group {
+    float: right;
+    height: 50px;
+    position: relative;
+}
+
+.submenu label {
+    background: url("../images/common_ui/label.png");
+    background-size: contain;
+    width: 66px;
+    height: 24px;
+    padding: 16px 50px 10px;
+    text-align-last: justify;
+    display: inline-block;
+}
+
+.search_group .menu_button {
+    background-image: url("../images/common_ui/sub_button.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    vertical-align: middle;
+    display: inline-block;
+    width: 168px;
+    height: 29px;
+    cursor: pointer;
+    padding: 13px 10px 13px 10px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+
+.search_group .search_bar {
+    background: url("../images/common_ui/input.png");
+    background-size: contain;
+    height: 46px;
+    width: 316px;
+    padding: 4px 0 0 20px;
+    display: inline-block;
+    border: none;
+}
+
+.search_group .search_btn {
+    background: url("../images/common_ui/squareBt.png");
+    height: 34px;
+    width: 34px;
+    padding: 8px;
+    cursor: pointer;
+    display: inline-block;
 }
 
 .task_head .task_icon {
     position: absolute;
     top: 0;
     right: 0;
+    cursor: pointer;
 }
 
 .task_head h1 {
@@ -76,7 +151,7 @@
     -webkit-box-orient: vertical;
 }
 
-.task_list .task_content {
+.content .task_content {
     background-image: url("../images/back/t_content_back.png");
     background-repeat: repeat-y;
     position: relative;
@@ -86,7 +161,7 @@
     text-align: justify;
 }
 
-.task_list .task_foot {
+.content .task_foot {
     background-image: url("../images/back/t_foot_back.png");
     background-repeat: no-repeat;
     position: relative;
@@ -138,8 +213,16 @@
     padding: 6px 17px 0;
     margin-top: 11px;
 }
+.task_foot .smallBtn{
+    background: url("../images/common_ui/squareBt.png");
+    background-size: contain;
+    float: right;
+    width: 40px;
+    height: 40px;
+    margin: 4px;
+}
 
-.task_edit .a_title {
+.send_area .a_title {
     background: url("../images/common_ui/input.png");
     background-size: 100%;
     width: 288px;
@@ -151,7 +234,7 @@
     vertical-align: middle;
 }
 
-.task_edit .a_desc {
+.send_area .a_desc {
     background: none;
     border: 16px ridge darkgoldenrod;
     border-left: none;
@@ -165,7 +248,7 @@
     vertical-align: middle;
 }
 
-.task_edit .a_award {
+.send_area .a_award {
     background: none;
     margin: 8px 0 8px 8px;
     width: 150px;
