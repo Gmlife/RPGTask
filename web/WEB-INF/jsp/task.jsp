@@ -52,6 +52,7 @@
                 } else {
                     alert("领取失败");
                 }
+
             })
         }
 
@@ -130,4 +131,6 @@
         </c:forEach>
     </div>
 </div>
+
+
 <%@include file="/WEB-INF/footer.jsp" %>
