@@ -222,32 +222,6 @@
     margin: 4px;
 }
 
-.send_area .a_title {
-    background: url("../images/common_ui/input.png");
-    background-size: 100%;
-    width: 288px;
-    height: 48px;
-    padding: 0 16px;
-    border: none;
-    text-align: left;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.send_area .a_desc {
-    background: none;
-    border: 16px ridge darkgoldenrod;
-    border-left: none;
-    border-right: none;
-    width: 288px;
-    height: 316px;
-    resize: none;
-    text-align: left;
-    padding: 8px 16px;
-    display: inline-block;
-    vertical-align: middle;
-}
-
 .send_area .a_award {
     background: none;
     margin: 8px 0 8px 8px;

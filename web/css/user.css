@@ -48,6 +48,10 @@
     height: 192px;
 }
 
+.other_icon img {
+    position: absolute;
+}
+
 .desc_editor .user_other_o {
     background: url("../images/common_ui/icon_tata.png");
     border: 16px ridge darkgoldenrod;
@@ -131,6 +135,7 @@
     right: 536px;
     color: white;
 }
+
 .follow_button {
     background: url("../images/common_ui/button2.png");
     background-size: 100%;
@@ -251,12 +256,14 @@
 .cell .blog_title:hover {
     color: brown;
 }
-.cell .bt_group{
+
+.cell .bt_group {
     float: right;
     right: 20px;
     display: inline-block;
     position: relative;
 }
+
 .cell .smallBtn {
     background: url("../images/common_ui/squareBt.png");
     background-size: contain;
@@ -268,7 +275,8 @@
     margin: 15px 0;
     cursor: pointer;
 }
-.cell .hint{
+
+.cell .hint {
     display: inline-block;
     position: relative;
     margin: 22px 0;

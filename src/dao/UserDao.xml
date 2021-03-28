@@ -31,20 +31,13 @@
         update user
         <set>
             <if test="userPass!=null">
-                user_pass=#{userPass}
+                user_pass=#{userPass},
             </if>
-        </set>
-        where user_id=#{uid}
-    </update>
-
-    <update id="setUserBan" parameterType="boolean">
-        update user
-        <set>
             <if test="isBan!=null">
                 is_ban=#{isBan}
             </if>
         </set>
-        where user_id =#{uid}
+        where user_id=#{uid}
     </update>
 
     <delete id="deleteUser">

@@ -37,30 +37,6 @@
     height: 192px;
     cursor: pointer;
 }
-.send_area .m_target{
-    background: url("../images/common_ui/input.png");
-    background-size: 100%;
-    width: 288px;
-    height: 48px;
-    padding: 0 16px;
-    border: none;
-    text-align: left;
-    display: inline-block;
-    vertical-align: middle;
-}
-.send_area .m_text{
-    background: none;
-    border: 16px ridge darkgoldenrod;
-    border-left: none;
-    border-right: none;
-    width: 288px;
-    height: 316px;
-    resize: none;
-    text-align: left;
-    padding: 8px 16px;
-    display: inline-block;
-    vertical-align: middle;
-}
 .content label{
     background: url("../images/common_ui/label.png");
     background-size: 100%;

@@ -22,8 +22,6 @@ public interface UserDao {
 
     int deleteUser(@Param("userName") String userName);
 
-    int setUserBan(@Param("isBan") boolean isBan);
-
     // UserDesc
     UserDesc getUserDesc(int uid);
 
