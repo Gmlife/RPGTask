@@ -55,6 +55,39 @@ aside .send_area{
     height: 460px;
     border: 16px ridge darkgoldenrod;
 }
+aside .ban_area{
+    background-image: url("../images/back/user_profile_back.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    width: 320px;
+    height: 62px;
+    border: 16px ridge darkgoldenrod;
+}
+.send_area .s_title{
+    background: url("../images/common_ui/input.png");
+    background-size: 100%;
+    width: 288px;
+    height: 48px;
+    padding: 0 16px;
+    border: none;
+    text-align: left;
+    display: inline-block;
+    vertical-align: middle;
+}
+.send_area .s_text{
+    background: none;
+    border: 16px ridge darkgoldenrod;
+    border-left: none;
+    border-right: none;
+    width: 288px;
+    height: 316px;
+    resize: none;
+    text-align: left;
+    padding: 8px 16px;
+    display: inline-block;
+    vertical-align: middle;
+}
 
 .day_signed p {
     display: block;
@@ -120,5 +153,19 @@ main .content {
     position: absolute;
     bottom: 24px;
     right: 104px;
+    color: white;
+}
+.ban_button{
+    background: url("../images/common_ui/button2.png");
+    background-size: 100%;
+    width: 200px;
+    height: 62px;
+    text-align-last: center;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: top;
+    margin: 0 60px 16px;
+    position: relative;
     color: white;
 }

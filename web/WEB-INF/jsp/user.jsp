@@ -34,6 +34,7 @@
             })
         }
     }
+
     function receiveTask(tid) {
         const res = confirm("是否领取该任务？");
         if (res === true) {
@@ -48,6 +49,34 @@
         }
 
     }
+
+    function banUser() {
+        const res = confirm("确认封禁该用户？");
+        if (res === true) {
+            $.post("<%=base%>/user/ban.action", {"a_uid":${my_desc.uid}, "ban_uid":${other_desc.uid}}, function (data) {
+                if (data === "ok") {
+                    alert("封禁成功");
+                    location.reload();
+                } else {
+                    alert("封禁失败");
+                }
+            });
+        }
+    }
+
+    function unBanUser() {
+        const res = confirm("确认解封该用户？");
+        if (res === true) {
+            $.post("<%=base%>/user/unBan.action", {"a_uid":${my_desc.uid}, "ban_uid":${other_desc.uid}}, function (data) {
+                if (data === "ok") {
+                    alert("解封成功");
+                    location.reload();
+                } else {
+                    alert("解封失败");
+                }
+            });
+        }
+    }
 </script>
 <div class="content">
     <div class="desc_editor">
@@ -60,6 +89,9 @@
             <c:if test="${other_desc.sex == false}">
                 <img
                         src="<%=base%>/images/character/male/male${other_desc.icon}.png"/>
+            </c:if>
+            <c:if test="${other_user.isBan==true}">
+                <img style="z-index: 1" title="该用户已被封禁" src="<%=base%>/images/common_ui/ban.png">
             </c:if>
         </div>
         <ul class="user_other_o">

@@ -29,6 +29,10 @@ public class UserController {
         // 通过账号和密码查询用户
         User user = userService.tryLogin(username, password);
         if (user != null) {
+            if (user.getIsBan()) {
+                model.addAttribute("msg", "该账号已经被封禁！");
+                return "login";
+            }
             // 将用户对象添加到Session
             session.setAttribute("USER_SESSION", user);
             // 跳转到主页面
@@ -151,6 +155,7 @@ public class UserController {
         }
         model.addAttribute("other_user", o_user);
         model.addAttribute("my_desc", desc);
+        model.addAttribute("cur_page", "other_info");
         addUserAllInfo(uid, model, "other");
         addUserSignInfo(s_uid, model);
         return "user";
@@ -202,6 +207,36 @@ public class UserController {
             return "fail";
     }
 
+    @PostMapping("/user/ban.action")
+    @ResponseBody
+    public String banUser(@RequestParam("a_uid") int a_uid, @RequestParam("ban_uid") int ban_uid) {
+        if (isNotAdmin(a_uid)) {
+            return "fail";
+        }
+        User user = userService.getUserByUid(ban_uid);
+        user.setIsBan(true);
+        int row = userService.updateUser(user);
+        if (row > 0)
+            return "ok";
+        else
+            return "fail";
+    }
+
+    @PostMapping("/user/unBan.action")
+    @ResponseBody
+    public String unBanUser(@RequestParam("a_uid") int a_uid, @RequestParam("ban_uid") int ban_uid) {
+        if (isNotAdmin(a_uid)) {
+            return "fail";
+        }
+        User user = userService.getUserByUid(ban_uid);
+        user.setIsBan(false);
+        int row = userService.updateUser(user);
+        if (row > 0)
+            return "ok";
+        else
+            return "fail";
+    }
+
     public void addUserAllInfo(int uid, Model model, String per_fix) {
         UserDesc desc = userService.getUserDesc(uid);
         List<Blog> blogs = new ArrayList<>();
@@ -234,5 +269,10 @@ public class UserController {
         }
         model.addAttribute("u_task", u_task);
         model.addAttribute("can_sign", can_sign);
+    }
+
+    public boolean isNotAdmin(int uid) {
+        User user = userService.getUserByUid(uid);
+        return !user.getUserType();
     }
 }

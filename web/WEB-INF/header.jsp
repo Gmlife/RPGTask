@@ -11,7 +11,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-   https://github.com/Gmlife/RPGTask/pull/7/conflict?name=web%252FWEB-INF%252Fjsp%252Ftask.jsp&ancestor_oid=a6a351b9bf8772c0633d5a1309f10791cfd55389&base_oid=1d01b19ca223536ece6412f72d54a0bef0130f68&head_oid=a20e4ee28534654908639343a377abf74b133193 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>校园互助系统</title>
     <link rel="icon" type="image/png" sizes="16x16"
           href="<%=base%>/images/RPGTask.png">
@@ -73,6 +73,23 @@
                     alert("消息发送失败!");
                 } else if (data === "no user") {
                     alert("发送目标的uid或者账号不存在，请重新核实后再发送");
+                }
+            })
+        } else {
+            alert("不能有空字段!");
+        }
+    }
+    function addBlog() {
+        let check = true;
+        if ($("#blog_title").val() === "") check = false;
+        if ($("#blog_text").val() === "") check = false;
+        if (check) {
+            $.post("<%=base%>/blog/add.action", $("#blog_editor").serialize(), function (data) {
+                if (data === "ok") {
+                    alert("发布成功！请等待管理员审核！");
+                    location.reload();
+                } else if (data === "fail") {
+                    alert("发布失败!");
                 }
             })
         } else {
@@ -182,9 +199,9 @@
         </div>
         <c:if test="${cur_page == 'task'}">
             <form class="send_area" id="task_editor" onsubmit="return false">
-                <input class="a_title rpg_font rpg_font rpg_3h" type="text" id="task_title" name="task_title"
+                <input class="s_title rpg_font rpg_font rpg_3h" type="text" id="task_title" name="task_title"
                        placeholder="在此输入任务标题" required>
-                <textarea class="a_desc rpg_font rpg_3h" id="task_desc" name="task_desc" placeholder="在此输入任务描述"
+                <textarea class="s_text rpg_font rpg_3h" id="task_desc" name="task_desc" placeholder="在此输入任务描述"
                           required></textarea>
                 <input class="a_award rpg_font rpg_3h" type="number" id="task_award" name="task_award"
                        placeholder="奖励金额" required>
@@ -195,13 +212,35 @@
         </c:if>
         <c:if test="${cur_page == 'message'}">
             <form class="send_area" id="message_editor" onsubmit="return false">
-                <input class="m_target rpg_font rpg_font rpg_3h" type="text" id="m_target" name="m_target"
+                <input class="s_title rpg_font rpg_font rpg_3h" type="text" id="m_target" name="m_target"
                        placeholder="在此输入收件人uid或者用户名" required>
-                <textarea class="m_text rpg_font rpg_3h" id="m_text" name="m_text" placeholder="在此输入消息文本"
+                <textarea class="s_text rpg_font rpg_3h" id="m_text" name="m_text" placeholder="在此输入消息文本"
                           required></textarea>
                 <input type="hidden" id="s_uid" name="s_uid" value="${my_desc.uid}">
             </form>
             <button class="rpg_font rpg_2h side_button" onclick="sendMessage()">发送消息</button>
+        </c:if>
+        <c:if test="${USER_SESSION.userType == true}">
+            <c:if test="${cur_page == 'other_info'}">
+                <div class="ban_area">
+                    <c:if test="${other_user.isBan==true}">
+                        <button class="rpg_font rpg_2h ban_button" onclick="unBanUser()">解禁该用户</button>
+                    </c:if>
+                    <c:if test="${other_user.isBan==false}">
+                        <button class="rpg_font rpg_2h ban_button" onclick="banUser()">封禁该用户</button>
+                    </c:if>
+                </div>
+            </c:if>
+        </c:if>
+        <c:if test="${cur_page=='blog'}">
+            <form class="send_area" id="blog_editor" onsubmit="return false">
+                <input class="s_title rpg_font rpg_font rpg_3h" type="text" id="blog_title" name="blog_title"
+                       placeholder="在此输入博客标题" required>
+                <textarea class="s_text rpg_font rpg_3h" id="blog_text" name="blog_text" placeholder="在此输入博客内容"
+                          required></textarea>
+                <input type="hidden" id="b_uid" name="b_uid" value="${my_desc.uid}">
+            </form>
+            <button class="rpg_font rpg_2h side_button" onclick="addBlog()">发布博客</button>
         </c:if>
     </aside>
     <main>
